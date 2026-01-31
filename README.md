@@ -1,10 +1,9 @@
-# Project Name
-> Mô tả ngắn gọn 1–2 dòng về project: làm gì, giải quyết vấn đề gì.
+# SNMP Trap alamr system
+> Hệ thống xử lý bản tin SNMP Trap phát sinh từ thiết bị mạng, lưu trữ, trực quan hoá, gửi cảnh báo tới người dùng
 
-## 🚀 Features
-- Feature 1
-- Feature 2
-- Feature 3
+## Tổng quan dự án
+- SNMP Trap là bản tin thiết bị mạng chủ động gửi tới cho máy manager khi có sự cố xảy ra, qua giao thức SNMP
+- Nhà mạng sử dụng dữ liệu này để xác định được thông tin của thiết bị đang gặp lỗi và đưa ra phương hướng xử lý
 
 ## 🏗️ Project Structure
 ```text
