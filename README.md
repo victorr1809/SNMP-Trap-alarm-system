@@ -32,6 +32,7 @@ alarm-system/
 │── README.md
 ```
 ## Kiến trúc hệ thống
+<img width="599" height="195" alt="Screenshot 2026-01-31 at 22 51 34" src="https://github.com/user-attachments/assets/84b41cfc-9c94-49d4-8199-bf479618d730" />
 ## Luồng poll data và lưu trữ
-<img width="1200" height="1400" alt="Luồng lưu trữ data lấy từ kafka" src="https://github.com/user-attachments/assets/e66da851-5054-4fb0-8b55-646c6a6749db" />
+<img width="600" height="700" alt="Luồng lưu trữ data lấy từ kafka" src="https://github.com/user-attachments/assets/e66da851-5054-4fb0-8b55-646c6a6749db" />
 
