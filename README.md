@@ -4,16 +4,27 @@
 ## Giới thiệu dự án
 - SNMP Trap là bản tin thiết bị mạng chủ động gửi tới cho máy manager khi có sự cố xảy ra, qua giao thức SNMP
 - Nhà mạng sử dụng dữ liệu này để xác định được thông tin của thiết bị đang gặp lỗi và đưa ra phương hướng xử lý
-- Xây dựng luồng xử lý dữ liệu bất đồng bộ
+- Xây dựng luồng tiếp nhận, xử lý dữ Trap, lưu trữ lâu dài, trực quan bằng Grafana
 
 ## Cấu trúc dự án
 ```text
-project-root/
+alarm-system/
+│── pom.xml
 │── src/
-│   ├── ...
-│── data/
-│── docs/
-│── docker/
+│   ├── main/java/com/
+        ├── manh/
+            ├── kafka
+            ├── test
+            ├── trap
+            ├── util
+        ├── victor/
+            ├── alarm
+            ├── app
+            ├── common
+            ├── kafka
+            ├── model
+            ├── trap
+            ├── util
 │── README.md
 │── requirements.txt
 │── docker-compose.yml
