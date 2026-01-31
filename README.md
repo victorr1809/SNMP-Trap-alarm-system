@@ -25,6 +25,7 @@ alarm-system/
             ├── model
             ├── trap
             ├── util
+    ├── test/java/com
+├── target   
 │── README.md
-│── requirements.txt
 │── docker-compose.yml
