@@ -9,28 +9,28 @@
 ## Cấu trúc dự án
 ```text
 alarm-system/
-│── pom.xml
+│── pom.xml                   # Maven config
 │── src/
 │   ├── main/java/com/
-        ├── manh/
-            ├── kafka
-            ├── test
-            ├── trap
-            ├── util
-        ├── victor/
-            ├── alarm
-            ├── app
-            ├── common
-            ├── kafka
-            ├── model
-            ├── trap
-            ├── util
-    ├── test/java/com
-├── target   
+│   │   ├── manh/
+│   │   │   ├── kafka/        # Kafka consumer
+│   │   │   ├── trap/         # Handling and Saving
+│   │   │   ├── util/         # DB utils
+│   │   │   └── test/         # test code
+│   │   ├── victor/
+│   │   │   ├── app/          # Application entry point
+│   │   │   ├── alarm/        # Alarm processing logic
+│   │   │   ├── kafka/        # Kafka producer
+│   │   │   ├── trap/         # Trap receiver
+│   │   │   ├── model/        # Data models
+│   │   │   ├── common/       # Common constants & config
+│   │   │   └── util/         # DB utils
+│   └── test/java/            
+│── target/                   # Build output
+│── config/                   # config files
+│── docker-compose.yml        # Docker compose file
 │── README.md
-│── docker-compose.yml
 ## Kiến trúc hệ thống
-
 ## Luồng poll data và lưu trữ
 <img width="1200" height="1400" alt="Luồng lưu trữ data lấy từ kafka" src="https://github.com/user-attachments/assets/e66da851-5054-4fb0-8b55-646c6a6749db" />
 
