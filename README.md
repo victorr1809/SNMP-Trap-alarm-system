@@ -1,4 +1,4 @@
-# SNMP Trap alamr system
+# SNMP Trap alarm system
 > Hệ thống xử lý bản tin SNMP Trap phát sinh từ thiết bị mạng, lưu trữ, trực quan hoá, gửi cảnh báo tới người dùng
 
 ## Giới thiệu dự án
