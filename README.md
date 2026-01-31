@@ -33,9 +33,13 @@ alarm-system/
 ```
 ## Kiến trúc hệ thống
 <img width="1198" height="390" alt="Screenshot 2026-01-31 at 22 51 34" src="https://github.com/user-attachments/assets/84b41cfc-9c94-49d4-8199-bf479618d730" />
+
 ## Các tính năng chính
 ### 1. Tiếp nhận Trap gửi tới UDP socket
+
 ### 2. Xử lý dữ liệu bất đồng bộ
+
 ### 3. Lưu trữ dữ liệu song song
+
 ### 4. Gửi cảnh báo tới người dùng
 
