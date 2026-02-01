@@ -6,7 +6,7 @@ Trap là bản tin thiết bị mạng chủ động gửi tới máy manager kh
 
 Dự án này xây dựng một hệ thống giám sát cho các thiết bị mạng dựa trên Trap. Các bản tin Trap được thu thập qua giao thức UDP, xử lý bất đồng bộ, lưu trữ và trực quan hóa để phục vụ theo dõi và cảnh báo.
 
-Hệ thống được thiết kế với trọng tâm là tách rời các thành phần, sử dụng hàng đợi và luồng song song để tránh nghẽn khi lưu lượng Trap tăng cao.
+Hệ thống được thiết kế để xử lý bất đồng bộ, sử dụng hàng đợi, luồng song song để tránh nghẽn khi lưu lượng Trap tăng cao.
 
 ## Cấu trúc dự án
 ```text
@@ -36,11 +36,12 @@ alarm-system/
 ## Kiến trúc hệ thống
 <img width="1198" height="390" alt="Screenshot 2026-01-31 at 22 51 34" src="https://github.com/user-attachments/assets/84b41cfc-9c94-49d4-8199-bf479618d730" />
 
-## Các tính năng chính
-### 1. Tiếp nhận Trap gửi tới UDP socket
-
+### 1. Data collection
+- Trap Receiver được viết bằng Java, lắng nghe Trap gửi về qua UDP socket
+- Dữ liệu Trap được xử lý qua rồi gửi lên Kafka
+  
 ### 2. Xử lý dữ liệu bất đồng bộ
--
+
 ### 3. Lưu trữ dữ liệu song song
 
 ### 4. Gửi cảnh báo tới người dùng
