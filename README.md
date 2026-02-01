@@ -2,9 +2,11 @@
 > Hệ thống xử lý bản tin SNMP Trap phát sinh từ thiết bị mạng, lưu trữ, trực quan hoá, gửi cảnh báo tới người dùng
 
 ## Giới thiệu dự án
-- SNMP Trap là bản tin thiết bị mạng chủ động gửi tới cho máy manager khi có sự cố xảy ra, qua giao thức SNMP
-- Nhà mạng sử dụng dữ liệu này để xác định được thông tin của thiết bị đang gặp lỗi và đưa ra phương hướng xử lý
-- Xây dựng luồng tiếp nhận, xử lý dữ Trap, lưu trữ lâu dài, trực quan bằng Grafana
+Trap là bản tin thiết bị mạng chủ động gửi tới máy manager khi có sự cố xảy ra, qua giao thức SNMP. Nhà mạng sử dụng dữ liệu này để xác định được thông tin của thiết bị đang gặp lỗi từ đó đưa ra phương hướng xử lý.
+
+Dự án này xây dựng một hệ thống giám sát cho các thiết bị mạng dựa trên Trap. Các bản tin Trap được thu thập qua giao thức UDP, xử lý bất đồng bộ, lưu trữ và trực quan hóa để phục vụ theo dõi và cảnh báo.
+
+Hệ thống được thiết kế với trọng tâm là tách rời các thành phần, sử dụng hàng đợi và luồng song song để tránh nghẽn khi lưu lượng Trap tăng cao.
 
 ## Cấu trúc dự án
 ```text
@@ -38,7 +40,7 @@ alarm-system/
 ### 1. Tiếp nhận Trap gửi tới UDP socket
 
 ### 2. Xử lý dữ liệu bất đồng bộ
-
+-
 ### 3. Lưu trữ dữ liệu song song
 
 ### 4. Gửi cảnh báo tới người dùng
