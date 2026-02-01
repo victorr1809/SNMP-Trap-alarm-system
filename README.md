@@ -34,14 +34,23 @@ alarm-system/
 ## Kiến trúc hệ thống
 <img width="1198" height="390" alt="Screenshot 2026-01-31 at 22 51 34" src="https://github.com/user-attachments/assets/84b41cfc-9c94-49d4-8199-bf479618d730" />
 
-### 1. Data collection
+### 1. Thu thập Trap
 - Trap Receiver được viết bằng Java, lắng nghe Trap gửi về qua UDP socket
-- Dữ liệu Trap được xử lý qua rồi gửi lên Kafka
+- Dữ liệu Trap được parse, làm giàu dữ liệu rồi gửi lên Kafka
   
-### 2. Xử lý dữ liệu bất đồng bộ
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+### 2. Xử lý và lưu trữ
+- Consumer đọc dữ liệu từ Kafka -> phân loại bản tin theo network (3G, 4G, Core) -> đẩy vào 3 hàng đợi riêng biệt
+- Các luồng xử lý song song lấy dữ liệu và lưu trữ vào PostgreSQL theo logic sau:
 
-### 3. Lưu trữ dữ liệu song song
+### 3. Trực quan hoá và gửi cảnh báo:
+- Sử dụng Grafana để vẽ dashboard
+- Dùng Grafana Alerting thiết lập luật cảnh báo và gửi tới Discord khi thoả mãn điều kiện
+
+## Các tính năng nổi bật (Key features)
 
 ### 4. Gửi cảnh báo tới người dùng
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![Kafka](https://img.shields.io/badge/Apache%20Kafka-000?style=for-the-badge&logo=apachekafka)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Grafana](https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white)
 
