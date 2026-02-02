@@ -1,5 +1,6 @@
 package com.producer.kafkaProducer;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,34 +19,22 @@ import java.util.Properties;
 public class KafkaProducerConfig {
 
     public static final Properties KAFKA_CONFIG = new Properties();
-    private static final String ConnectPath = "/Users/manh/Documents/ĐA2 OSS/alarm-system/config/kafka-producer.properties";
-	// private static final String CONF_PATH = "conf";
-	// private static final String KAFKA_CONF_FILE = "kafka-producer.properties";
-	// private static final Logger logger = Logger.getLogger(KafkaProducerConfig.class); 
-
-	/*
-	public static String getLocation(String location) throws MalformedURLException, UnsupportedEncodingException {
-		String result = "";
-		CodeSource src = AppConfig.class.getProtectionDomain().getCodeSource();
-		URL url = new URL(src.getLocation(), location);
-		result = URLDecoder.decode(url.getPath(), "utf-8");
-		return result;
-	}
-    */
+	private static final String KAFKA_CONF_FILE = "kafka-producer.properties";
+    
 	
 	public static void loadKafkaProducerConfig() throws FileNotFoundException, IOException {
-		// String connectInfo = "";
-		// connectInfo = getLocation(CONF_PATH) + "/" + KAFKA_CONF_FILE;
+        String connectInfo = "config/" + KAFKA_CONF_FILE;
+        File filePath = new File(connectInfo);
 		InputStream propsStream = null;
 		try {
-			propsStream = new FileInputStream(ConnectPath);
+			propsStream = new FileInputStream(filePath);
 			KAFKA_CONFIG.load(propsStream);
 			propsStream.close();
         } catch (FileNotFoundException e) {
-            System.err.println("File config not found at path: " + ConnectPath);
+            System.err.println("File config not found at path: " + filePath);
             e.printStackTrace(); // In chi tiết lỗi để debug
         } catch (IOException e) {
-            System.err.println("Error reading config file: " + ConnectPath);
+            System.err.println("Error reading config file: " + filePath);
             e.printStackTrace();
         }
 	}

@@ -1,12 +1,12 @@
 // StructureAlarm
-package com.producer.alarm;
+package com.producer.util;
 
+import com.producer.alarm.AlarmType;
 import com.producer.model.CellN3G;
 import com.producer.model.CellN4G;
 import com.producer.model.HCoreN;
 import com.producer.model.HProvinceCode;
 import com.producer.model.StructureAlarm;
-import com.producer.util.DbUtil;
 
 
 public class AlarmInfo {
