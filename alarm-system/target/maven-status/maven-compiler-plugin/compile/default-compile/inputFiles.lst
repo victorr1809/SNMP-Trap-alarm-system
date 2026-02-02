@@ -1,35 +1,34 @@
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/model/HCoreN.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/manh/kafka/consumer/KafkaConsumerSetting.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/manh/test/TestKafkaConsumer.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/util/DbUtil.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/kafka/producer/JsonSerializer.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/kafka/producer/ProducerService.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/alarm/AlarmType.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/app/AppSetting.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/test/TrapSender.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/trap/TrapProbe.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/model/StructureAlarm.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/kafka/producer/KafkaProducerConfig.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/manh/kafka/consumer/JsonDeserializer.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/model/CellN3G.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/model/HProvinceCode.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/manh/util/Handler.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/manh/trap/TrapObs.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/trap/TrapReceiver.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/manh/test/TestConsumerCreator.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/manh/util/AlarmInfo.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/manh/trap/ProcessAlarm.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/util/DbUtilTest.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/app/AppConfig.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/model/Cell2G.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/manh/kafka/consumer/ConsumerService.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/kafka/producer/ProducerCreator.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/alarm/AlarmInfo.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/manh/kafka/consumer/KafkaConsumerConfig.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/manh/kafka/consumer/ConsumerCreator.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/common/Global.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/kafka/producer/KafkaProducerSetting.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/trap/MappingOID.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/kafka/producer/TestProducer.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/victor/model/CellN4G.java
-/Users/manh/Documents/ĐA2 OSS/alarm-system/src/main/java/com/manh/test/TestDB.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/model/HProvinceCode.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/consumer/trap/TrapObs.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/consumer/util/Handler.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/app/AppConfig.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/util/DbUtil.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/model/CellN4G.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/model/HCoreN.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/consumer/kafkaConsumer/ConsumerCreator.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/trap/TrapReceiver.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/model/CellN3G.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/kafkaProducer/TestProducer.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/alarm/AlarmInfo.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/util/DbUtilTest.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/app/AppSetting.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/consumer/test/TestConsumerCreator.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/consumer/kafkaConsumer/JsonDeserializer.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/consumer/kafkaConsumer/KafkaConsumerSetting.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/kafkaProducer/KafkaProducerConfig.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/trap/MappingOID.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/consumer/trap/ProcessAlarm.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/kafkaProducer/KafkaProducerSetting.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/model/StructureAlarm.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/kafkaProducer/ProducerService.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/alarm/AlarmType.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/common/Global.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/consumer/kafkaConsumer/KafkaConsumerConfig.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/trap/TrapSender.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/consumer/util/AlarmInfo.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/consumer/kafkaConsumer/ConsumerService.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/trap/TrapProbe.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/kafkaProducer/JsonSerializer.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/producer/kafkaProducer/ProducerCreator.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/consumer/test/TestKafkaConsumer.java
+/Users/manh/Documents/GitHub/SNMP-Trap-alarm-system/alarm-system/src/main/java/com/consumer/test/TestDB.java
