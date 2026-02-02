@@ -12,19 +12,19 @@ alarm-system/
 │── pom.xml                   # Maven config
 │── src/
 │   ├── main/java/com/
-│   │   ├── manh/
-│   │   │   ├── kafka/        # Kafka consumer
-│   │   │   ├── trap/         # Handling and Saving
-│   │   │   ├── util/         # DB utils
-│   │   │   └── test/         # test code
-│   │   ├── victor/
-│   │   │   ├── app/          # Application entry point
-│   │   │   ├── alarm/        # Alarm processing logic
-│   │   │   ├── kafka/        # Kafka producer
-│   │   │   ├── trap/         # Trap receiver
-│   │   │   ├── model/        # Data models
-│   │   │   ├── common/       # Common constants & config
-│   │   │   └── util/         # DB utils
+│   │   ├── consumer/
+│   │   │   ├── kafkaConsumer/    # Kafka consumer
+│   │   │   ├── trap/             # Handling and Saving
+│   │   │   ├── util/             # DB utils
+│   │   │   └── test/             # test code
+│   │   ├── producer/
+│   │   │   ├── app/              # Application entry point
+│   │   │   ├── alarm/            # Alarm processing logic
+│   │   │   ├── kafkaProducer/    # Kafka producer
+│   │   │   ├── trap/             # Trap receiver
+│   │   │   ├── model/            # Data models
+│   │   │   ├── common/           # Common constants & config
+│   │   │   └── util/             # DB utils
 │   └── test/java/            
 │── target/                   # Build output
 │── config/                   # config files
@@ -46,9 +46,10 @@ alarm-system/
 - Sử dụng Grafana để vẽ dashboard
 - Dùng Grafana Alerting thiết lập luật cảnh báo và gửi tới Discord khi thoả mãn điều kiện
 
-## Các tính năng nổi bật (Key features)
+## Dashboard giám sát (Grafana)
+<img width="2864" height="2028" alt="dash" src="https://github.com/user-attachments/assets/37472ef6-80ba-46b1-bfa6-b703952cd281" />
 
-### 4. Gửi cảnh báo tới người dùng
+## Các tính năng nổi bật (Key features)
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
 ![Kafka](https://img.shields.io/badge/Apache%20Kafka-000?style=for-the-badge&logo=apachekafka)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
