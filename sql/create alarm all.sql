@@ -32,9 +32,8 @@ CREATE TABLE alarm.alarm_all (
     district VARCHAR(100),
     dept VARCHAR(100),
     team VARCHAR(100),
-    
-    -- Cờ xử lý
-    is_send_sms VARCHAR(100),
+
+	-- Thời gian nhận
     tg_nhan VARCHAR(100)
     
     -- -- Composite unique constraint

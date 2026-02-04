@@ -4,39 +4,37 @@
 --              If no ACTIVE record found, INSERT new record with CLEARED status
 -- ============================================================
 
-CREATE OR REPLACE PROCEDURE alarm.update_alarm_end2(
-    -- Alarm identifiers
+CREATE OR REPLACE PROCEDURE alarm.update_alarm_all(
     p_nbi_alarm_id VARCHAR(255),
     p_ne VARCHAR(255),
     
-    -- Alarm information
+    -- Thông tin alarm
     p_nbi_alarm_type VARCHAR(100),
     p_nbi_perceived_severity VARCHAR(100),
     p_nbi_specific_problem text,
     p_nbi_additional_text text,
     p_nbi_object_instance VARCHAR(200),
     
-    -- Device/Location information
+    -- Thông tin thiết bị/ vị trí
     p_cell_id VARCHAR(100),
     p_site VARCHAR(100),
     p_ne_type VARCHAR(50),
     p_ip_address VARCHAR(100),
     
-    -- Time information
+    -- Thông tin thời gian
 	p_nbi_alarm_time VARCHAR(100),
     p_nbi_clear_time VARCHAR(100),
     p_record_type VARCHAR(20),
     
-    -- Geography information
+    -- Thông tin địa lý
     p_network VARCHAR(50),
     p_region VARCHAR(100),
     p_province VARCHAR(100),
     p_district VARCHAR(100),
     p_dept VARCHAR(100),
     p_team VARCHAR(100),
-    
-    -- Processing flags
-    p_is_send_sms VARCHAR(100),
+
+	-- Thời gian nhận
     p_tg_nhan VARCHAR(100)
 )
 LANGUAGE plpgsql
@@ -92,7 +90,6 @@ BEGIN
             district,
             dept,
             team,
-            is_send_sms,
             tg_nhan
         ) VALUES (
             p_nbi_alarm_id,
@@ -117,7 +114,6 @@ BEGIN
             p_district,
             p_dept,
             p_team,
-            p_is_send_sms,
             p_tg_nhan
         )
 		ON CONFLICT (nbi_alarm_id, ne)
@@ -136,6 +132,3 @@ BEGIN
     END IF;
 END;
 $$;
-
--- Grant execute permission (adjust role as needed)
--- GRANT EXECUTE ON PROCEDURE alarm.update_alarm_end TO your_app_role;

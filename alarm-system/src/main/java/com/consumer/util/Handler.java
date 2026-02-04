@@ -30,8 +30,8 @@ public class Handler implements Runnable {
 	private int count = 0;
 
 	private String type;
-	private String insertSQL = "CALL alarm.insert_alarm_all(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-	private String updateSQL = "CALL alarm.update_alarm_end(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private String insertSQL = "CALL alarm.insert_alarm_all(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private String updateSQL = "CALL alarm.update_alarm_all(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 	private long execTimeMillis = 0L;
 	private long totalInsertCount = 0L;
@@ -92,7 +92,7 @@ public class Handler implements Runnable {
 			insertStmt.setString(19, structAlarm.dept);
 			insertStmt.setString(20, structAlarm.team);
 
-			insertStmt.setString(22, structAlarm.tgNhan);
+			insertStmt.setString(21, structAlarm.tgNhan);
 
 			// Execute to insert
 			insertStmt.executeUpdate();
@@ -130,7 +130,7 @@ public class Handler implements Runnable {
 			updateStmt.setString(19, alarm.dept);
 			updateStmt.setString(20, alarm.team);
 			
-			updateStmt.setString(22, alarm.tgNhan);
+			updateStmt.setString(21, alarm.tgNhan);
 
 			// Lưu lại thời điểm ghi nhận stmt đầu tiên
 			if (updateBatchStart == 0L) {
@@ -148,8 +148,7 @@ public class Handler implements Runnable {
 			boolean reachedTimeout = (elapsedSeconds >= MAX_WAIT_TIME) && (updateBatchCounter >= 1);
 
 			if (reachedBatchSize || reachedTimeout) {
-				System.out.println("Executing batch: size=" + updateBatchCounter + ", timeout=" + reachedTimeout + 
-						   ", elapsed=" + elapsedSeconds + "s");
+				System.out.println("\nExecuting update: size=" + updateBatchCounter + ", timeout=" + reachedTimeout);
 				execUpdateBatch();
 			} 
 
@@ -205,7 +204,7 @@ public class Handler implements Runnable {
 			StructureAlarm alarm = new StructureAlarm();
 			try {
 				alarm = queue.take();
-				System.out.println(type + " queue remaining: " + queue.size());
+				if (queue.size() % 100 == 0) System.out.println(type + " queue remaining: " + queue.size());
 				alarm = AlarmInfo.setAlarmInfo(alarm);
 
 				// test insert alarm
@@ -239,10 +238,7 @@ public class Handler implements Runnable {
 				} else {
 					insertAlarm(alarm);
 					if (++count >= 50) {
-						System.out.println(
-								"INSERTING ==> " + type + ": " + count + " ALARMS" +
-										" / TOTAL => " + (totalInsertCount += count) +
-										"\nREMAINED IN QUEUE => " + queue.size() + "\n");
+						System.out.println("\nINSERTING " + type + ": " + count + " ALARMS" + "..REMAINED IN QUEUE => " + queue.size() + "\n");
 						count = 0;
 					}
 				}

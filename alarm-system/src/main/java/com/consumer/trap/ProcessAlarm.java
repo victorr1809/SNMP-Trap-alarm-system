@@ -49,30 +49,31 @@ public class ProcessAlarm extends Thread {
 
                 if (structAlarm.network.equals("2G")) {
                     continue;
-                } else if (structAlarm.network.equals("3G")) {
+                } 
+                else if (structAlarm.network.equals("3G")) {
                     while(queue3g.size() > QUEUE_SIZE)
-                        Thread.sleep(50000);
+                        Thread.sleep(5000);
                     queue3g.add(structAlarm);
-                    // System.out.println("Thêm alarm 3G vào queue3g, alarmId: " + structAlarm.nbiAlarmId);
-                } else if(structAlarm.network.equals("RAN_4G")) {
+                } 
+                else if(structAlarm.network.equals("RAN_4G")) {
                     while(queue4g.size() > QUEUE_SIZE)
-                        Thread.sleep(50000);
+                        Thread.sleep(5000);
                     queue4g.add(structAlarm);
-                    // System.out.println("Thêm alarm 4G vào queue4g, alarmId: " + structAlarm.nbiAlarmId);
-                } else {
+                } 
+                else {
                     while(queueCore.size() > QUEUE_SIZE)
-                        Thread.sleep(50000);
+                        Thread.sleep(5000);
                     queueCore.add(structAlarm);
-                    // System.out.println("Thêm alarm Core vào queueCore, alarmId: " + structAlarm.nbiAlarmId);
                 }
 
-                System.out.println(
-                    "SIZE: queue3g=" + queue3g.size() + 
-                    ", queue4g=" + queue4g.size() + 
-                    ", queueCore=" + queueCore.size() + "\n"
-                );
-                // System.out.println("Size queue4g: " + queue4g.size());
-                // System.out.println("Size queueCore: " + queueCore.size() + "\n");
+                int totalSize = queue3g.size() + queue4g.size() + queueCore.size();
+                if (totalSize % 100 == 0) {
+                    System.out.println(
+                        "SIZE: queue3g=" + queue3g.size() + 
+                        ", queue4g=" + queue4g.size() + 
+                        ", queueCore=" + queueCore.size() + "\n"
+                    );
+                }
             }
 
         } catch (Exception e) {

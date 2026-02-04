@@ -83,8 +83,7 @@ public class ConsumerService extends Thread{
                 _subcribeDataFromKafka = false;
             }
 
-            if(consumerRecords.count()>0) {
-            	System.out.println("Tổng số bản ghi lấy được: " + consumerRecords.count());
+            if(consumerRecords.count() > 0) {
                 consumerRecords.forEach(record -> {
                     StructureAlarm structAlarm = record.value();
                     tempDataQueue.add(structAlarm);
