@@ -14,16 +14,16 @@ alarm-system/
 │   ├── main/java/com/
 │   │   ├── consumer/
 │   │   │   ├── kafkaConsumer/    # Kafka consumer
+│   │   │   ├── model/            # model data
+│   │   │   ├── test/             # test DB utils
 │   │   │   ├── trap/             # Handling and Saving
-│   │   │   ├── util/             # DB utils
-│   │   │   └── test/             # test code
+│   │   │   └── util/             # DB utils
 │   │   ├── producer/
 │   │   │   ├── app/              # Application entry point
-│   │   │   ├── alarm/            # Alarm processing logic
-│   │   │   ├── kafkaProducer/    # Kafka producer
-│   │   │   ├── trap/             # Trap receiver
-│   │   │   ├── model/            # Data models
 │   │   │   ├── common/           # Common constants & config
+│   │   │   ├── kafkaProducer/    # Kafka producer
+│   │   │   ├── model/            # Data models
+│   │   │   ├── trap/             # Trap receiver
 │   │   │   └── util/             # DB utils
 │   └── test/java/            
 │── target/                   # Build output
@@ -51,6 +51,12 @@ alarm-system/
 <img width="2864" height="2028" alt="dash" src="https://github.com/user-attachments/assets/37472ef6-80ba-46b1-bfa6-b703952cd281" />
 
 ## Các tính năng nổi bật (Key features)
+1. Khả năng chịu tải
+2. Lưu trữ theo batch:
+3. Xử lý song song ở mức cơ bản
+4. Gửi cảnh báo tới người dùng
+
+## Công nghệ sử dụng
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
 ![Kafka](https://img.shields.io/badge/Apache%20Kafka-000?style=for-the-badge&logo=apachekafka)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
