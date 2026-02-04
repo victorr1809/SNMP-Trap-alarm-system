@@ -81,18 +81,6 @@ public class AlarmInfo {
 
 		// Điền site
 		try {
-			// Thay đổi site name nếu cảnh báo là MAT DIEN CRAN
-			// if (structAlarm.nbiAlarmType.equals("POWER")) {
-			// 	// site name theo alarm info
-			// 	if(structAlarm.nbiAdditionalText.contains("<") && structAlarm.nbiAdditionalText.contains(">")) {
-			// 		structAlarm.site = structAlarm.nbiAdditionalText.substring(structAlarm.nbiAdditionalText.lastIndexOf("<") + 1, structAlarm.nbiAdditionalText.lastIndexOf(">"));
-			// 	}
-			// 	// site name theo alarm name
-			// 	if(structAlarm.nbiSpecificProblem.contains("<") && structAlarm.nbiSpecificProblem.contains(">")) {
-			// 		structAlarm.site = structAlarm.nbiSpecificProblem.substring(structAlarm.nbiSpecificProblem.lastIndexOf("<") + 1, structAlarm.nbiSpecificProblem.lastIndexOf(">"));
-			// 	}
-			// }
-
 			// Thay đổi tên trạm nếu cảnh báo máy phát điện (vì những cảnh báo này có chứa tên trạm chính xác ở trong dấu ngoặc nhọn)
 			if(structAlarm.nbiSpecificProblem.toUpperCase().contains("GENERATOR") || structAlarm.nbiAdditionalText.toUpperCase().contains("GENERATOR")) {
 				// Site name theo alarm info

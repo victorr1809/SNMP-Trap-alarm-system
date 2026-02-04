@@ -6,14 +6,14 @@ CREATE TABLE alarm.alarm_all (
     -- Thông tin alarm
     nbi_alarm_type VARCHAR(100),
     nbi_perceived_severity VARCHAR(100),
-    nbi_specific_problem VARCHAR(150),
-    nbi_additional_text VARCHAR(150),
-    nbi_object_instance VARCHAR(100),
+    nbi_specific_problem TEXT,
+    nbi_additional_text TEXT,
+    nbi_object_instance VARCHAR(255),
     
     -- Thông tin thiết bị/vị trí
     cell_id VARCHAR(100),
     site VARCHAR(100),
-    ne_type VARCHAR(50),
+    ne_type VARCHAR(100),
     ip_address VARCHAR(100),
 
 	-- Thời gian
@@ -22,11 +22,11 @@ CREATE TABLE alarm.alarm_all (
     last_updated TIMESTAMP NOT NULL,
     
     -- Trạng thái
-    status VARCHAR(20) DEFAULT 'ACTIVE', -- 'ACTIVE', 'CLEARED', 'ACKNOWLEDGED'
-    record_type VARCHAR(20), -- 'START', 'END', 'ACK'
+    status VARCHAR(100) DEFAULT 'ACTIVE', -- 'ACTIVE', 'CLEARED', 'ACKNOWLEDGED'
+    record_type VARCHAR(100), -- 'START', 'END', 'ACK'
     
     -- Thông tin địa lý
-    network VARCHAR(50),
+    network VARCHAR(100),
     region VARCHAR(100),
     province VARCHAR(100),
     district VARCHAR(100),
@@ -39,11 +39,3 @@ CREATE TABLE alarm.alarm_all (
     -- -- Composite unique constraint
     -- CONSTRAINT uk_alarm UNIQUE (nbi_alarm_id, ne)
 );
-
--- Indexes quan trọng
--- CREATE INDEX idx_alarms_status ON alarms(status) WHERE status = 'ACTIVE';
--- CREATE INDEX idx_alarms_time ON alarms(nbi_alarm_time DESC);
--- CREATE INDEX idx_alarms_geography ON alarms(province, region, district);
--- CREATE INDEX idx_alarms_ne ON alarms(ne);
--- CREATE INDEX idx_alarms_severity ON alarms(nbi_perceived_severity);
--- CREATE INDEX idx_alarms_composite ON alarms(status, nbi_alarm_time) WHERE status = 'ACTIVE';

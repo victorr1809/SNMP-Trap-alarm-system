@@ -25,8 +25,8 @@ public class ProcessAlarm extends Thread {
 	protected Handler _coreThread;  
 
     // Hàm khởi tạo
-    public ProcessAlarm(BlockingQueue<StructureAlarm> _alarmQueue) {
-		_mAlarmQueue = _alarmQueue;
+    public ProcessAlarm(BlockingQueue<StructureAlarm> tempDataQueue) {
+		_mAlarmQueue = tempDataQueue;
 
         // Hàng đợi
 		queue3g = new LinkedBlockingQueue<StructureAlarm>();

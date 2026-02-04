@@ -5,23 +5,23 @@ CREATE OR REPLACE PROCEDURE alarm.insert_alarm_all(
     -- Thông tin alarm
     p_nbi_alarm_type VARCHAR(100),
     p_nbi_perceived_severity VARCHAR(100),
-    p_nbi_specific_problem text,
-    p_nbi_additional_text text,
-    p_nbi_object_instance VARCHAR(200),
+    p_nbi_specific_problem TEXT,
+    p_nbi_additional_text TEXT,
+    p_nbi_object_instance VARCHAR(255),
     
     -- Thông tin thiết bị/vị trí
     p_cell_id VARCHAR(100),
     p_site VARCHAR(100),
-    p_ne_type VARCHAR(50),
+    p_ne_type VARCHAR(100),
     p_ip_address VARCHAR(100),
     
     -- Thông tin thời gian
     p_nbi_alarm_time VARCHAR(100),
     p_nbi_clear_time VARCHAR(100),
-    p_record_type VARCHAR(20),
+    p_record_type VARCHAR(100),
     
     -- Thông tin địa lý
-    p_network VARCHAR(50),
+    p_network VARCHAR(100),
     p_region VARCHAR(100),
     p_province VARCHAR(100),
     p_district VARCHAR(100),
@@ -39,7 +39,7 @@ DECLARE
 BEGIN
 	v_parsed_alarm_time = case when p_nbi_alarm_time IS NULL OR TRIM(p_nbi_alarm_time) = '' THEN NULL 
 				else TO_TIMESTAMP(p_nbi_alarm_time, 'YYYY-MM-DD,HH24:MI:SS') END;
-	v_parsed_clear_time = case when p_nbi_clear_time IS NULL OR TRIM(p_nbi_alarm_time) = '' THEN NULL 
+	v_parsed_clear_time = case when p_nbi_clear_time IS NULL OR TRIM(p_nbi_clear_time) = '' THEN NULL 
 				else TO_TIMESTAMP(p_nbi_clear_time, 'YYYY-MM-DD,HH24:MI:SS') END;
 
 	INSERT INTO alarm.alarm_all (
@@ -94,8 +94,6 @@ BEGIN
 	ON CONFLICT (nbi_alarm_id, ne) 
 	DO UPDATE SET
 	    -- Update các trường thông tin với data mới nhất
-        nbi_specific_problem = EXCLUDED.nbi_specific_problem,
-        nbi_additional_text = EXCLUDED.nbi_additional_text,
 		nbi_alarm_time = CASE
             WHEN alarm.alarm_all.nbi_alarm_time IS NULL AND EXCLUDED.nbi_alarm_time IS NOT NULL THEN EXCLUDED.nbi_alarm_time
             ELSE alarm.alarm_all.nbi_alarm_time END,
@@ -106,7 +104,6 @@ BEGIN
         record_type = CASE
             WHEN alarm.alarm_all.status = 'CLEARED' THEN alarm.alarm_all.record_type
             ELSE EXCLUDED.record_type END,
-        last_updated = CURRENT_TIMESTAMP,
-        tg_nhan = EXCLUDED.tg_nhan;
+        last_updated = CURRENT_TIMESTAMP;
 END;
 $$

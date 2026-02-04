@@ -11,9 +11,9 @@ CREATE OR REPLACE PROCEDURE alarm.update_alarm_all(
     -- Thông tin alarm
     p_nbi_alarm_type VARCHAR(100),
     p_nbi_perceived_severity VARCHAR(100),
-    p_nbi_specific_problem text,
-    p_nbi_additional_text text,
-    p_nbi_object_instance VARCHAR(200),
+    p_nbi_specific_problem TEXT,
+    p_nbi_additional_text TEXT,
+    p_nbi_object_instance VARCHAR(255),
     
     -- Thông tin thiết bị/ vị trí
     p_cell_id VARCHAR(100),
@@ -24,10 +24,10 @@ CREATE OR REPLACE PROCEDURE alarm.update_alarm_all(
     -- Thông tin thời gian
 	p_nbi_alarm_time VARCHAR(100),
     p_nbi_clear_time VARCHAR(100),
-    p_record_type VARCHAR(20),
+    p_record_type VARCHAR(100),
     
     -- Thông tin địa lý
-    p_network VARCHAR(50),
+    p_network VARCHAR(100),
     p_region VARCHAR(100),
     p_province VARCHAR(100),
     p_district VARCHAR(100),
@@ -55,17 +55,14 @@ BEGIN
     SET 
         status = 'CLEARED',
         record_type = p_record_type,
-        nbi_clear_time = CASE 
-            WHEN p_nbi_clear_time IS NULL OR TRIM(p_nbi_clear_time) = '' THEN NULL
-            ELSE TO_TIMESTAMP(p_nbi_clear_time, 'YYYY-MM-DD,HH24:MI:SS') END,
+        nbi_clear_time = v_parsed_clear_time,
         last_updated = CURRENT_TIMESTAMP
     WHERE nbi_alarm_id = p_nbi_alarm_id AND ne = p_ne AND status = 'ACTIVE';
     
     -- Get number of affected rows
     GET DIAGNOSTICS v_affected_rows = ROW_COUNT;
     
-    -- If no active alarm found, INSERT new record with CLEARED status
-    -- This handles the case when END arrives before START
+    -- Nếu k có Active alarm tương ứng --> insert bản ghi mới với cleared status
     IF v_affected_rows = 0 THEN
         INSERT INTO alarm.alarm_all (
             nbi_alarm_id,
@@ -115,20 +112,17 @@ BEGIN
             p_dept,
             p_team,
             p_tg_nhan
-        )
-		ON CONFLICT (nbi_alarm_id, ne)
-        DO UPDATE SET
-            -- Update các trường thông tin
-			nbi_alarm_time = alarm.alarm_all.nbi_alarm_time,
-			nbi_clear_time = CASE
-                WHEN alarm.alarm_all.nbi_clear_time IS NULL AND EXCLUDED.nbi_clear_time IS NOT NULL
-                THEN EXCLUDED.nbi_clear_time ELSE alarm.alarm_all.nbi_clear_time END,
-			status = 'CLEARED',
-            record_type = EXCLUDED.record_type,     
-            last_updated = CURRENT_TIMESTAMP;
-        
-    ELSE
-        RAISE NOTICE 'Updated alarm % for NE: % to CLEARED status', p_nbi_alarm_id, p_ne;
+        );
+		-- ON CONFLICT (nbi_alarm_id, ne)
+  --       DO UPDATE SET
+  --           -- Update các trường thông tin
+		-- 	nbi_alarm_time = alarm.alarm_all.nbi_alarm_time,
+		-- 	nbi_clear_time = CASE
+  --               WHEN alarm.alarm_all.nbi_clear_time IS NULL AND EXCLUDED.nbi_clear_time IS NOT NULL
+  --               THEN EXCLUDED.nbi_clear_time ELSE alarm.alarm_all.nbi_clear_time END,
+		-- 	status = 'CLEARED',
+  --           record_type = EXCLUDED.record_type,     
+  --           last_updated = CURRENT_TIMESTAMP;
     END IF;
 END;
 $$;

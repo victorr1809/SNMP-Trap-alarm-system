@@ -9,7 +9,8 @@ public class TestDB {
 
     private static Connection connection;
     private static PreparedStatement connectionStmt; 
-    private static String insertSQL = "CALL mapping.insert_alarm(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private static String insertSQL = "CALL alarm.insert_alarm_all(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private static String updateSQL = "CALL alarm.update_alarm_all(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     public static void main(String[] args) {
         try {
@@ -27,15 +28,15 @@ public class TestDB {
             connectionStmt.setString(9,  "ALARMID_TEST_001");
             connectionStmt.setString(10, "NETYPE_TEST");
 
-            // timestamp (để string theo format Postgres dễ cast)
-            connectionStmt.setTimestamp(11, java.sql.Timestamp.valueOf("2025-12-30 10:00:00"));
-            connectionStmt.setTimestamp(12, java.sql.Timestamp.valueOf("2025-12-30 09:59:00"));
+            connectionStmt.setString(11, "OBJECT/INSTANCE/TEST");
 
-            connectionStmt.setString(13, "OBJECT/INSTANCE/TEST");
+            // timestamp (để string theo format Postgres dễ cast)
+            connectionStmt.setString(12,"2025-12-12 10:00:00");
+            connectionStmt.setString(13,"2025-12-12 09:59:00");
 
             // boolean (để string "true"/"false" cho Postgres cast được)
-            connectionStmt.setBoolean(14, true);
-            connectionStmt.setBoolean(15, true);
+            connectionStmt.setString(14, "true");
+            connectionStmt.setString(15, "true");
 
             connectionStmt.setString(16, "4G");
             connectionStmt.setString(17, "REGION_TEST");
@@ -43,12 +44,9 @@ public class TestDB {
             connectionStmt.setString(19, "DISTRICT_TEST");
             connectionStmt.setString(20, "DEPT_TEST");
             connectionStmt.setString(21, "TEAM_TEST");
-            connectionStmt.setString(22, "10.1.2.3");
-
-            connectionStmt.setBoolean(23, false);
-            connectionStmt.setTimestamp(24, java.sql.Timestamp.valueOf("2025-12-30 10:01:00"));
 
             connectionStmt.executeUpdate();
+
         } catch (SQLException e) {
             System.out.println("Lỗi: " + e);
         }

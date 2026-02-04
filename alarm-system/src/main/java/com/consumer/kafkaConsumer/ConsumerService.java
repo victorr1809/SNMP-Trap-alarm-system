@@ -35,19 +35,19 @@ import com.consumer.model.StructureAlarm;
 public class ConsumerService extends Thread{
     private static Consumer<Long, StructureAlarm> consumer = null;
     private static Consumer<Long, StructureAlarm> consumerTest = null;
-    private static LinkedBlockingQueue<StructureAlarm> tempDataQueue = null;
+    private static LinkedBlockingQueue<StructureAlarm> queue = null;
     private static boolean _subcribeDataFromKafka = true;
 
     // Hàm khởi tạo (Chạy đầu tiên)
     public ConsumerService () {
         this.consumer = ConsumerCreator.createConsumer(StructureAlarm.class);
-        tempDataQueue = new LinkedBlockingQueue<>();
+        queue = new LinkedBlockingQueue<>();
     }
 
     // Hàm đợi nếu Queue đầy
     public static void waitTempDataQueue() {
         try {
-            if (tempDataQueue.size() > 10000) {
+            if (queue.size() > 10000) {
                 Thread.sleep(50000);
             }
         } catch (InterruptedException ex){
@@ -86,7 +86,7 @@ public class ConsumerService extends Thread{
             if(consumerRecords.count() > 0) {
                 consumerRecords.forEach(record -> {
                     StructureAlarm structAlarm = record.value();
-                    tempDataQueue.add(structAlarm);
+                    queue.add(structAlarm);
                 });
             }
 
@@ -97,11 +97,11 @@ public class ConsumerService extends Thread{
                 retryCommit(consumer);
             }
 
-            while(!tempDataQueue.isEmpty()) {
-                StructureAlarm structAlarm = tempDataQueue.poll();
-                while(TrapObs._mAlarmQueueFromSocket.size() > 10000)
+            while(!queue.isEmpty()) {
+                StructureAlarm structAlarm = queue.poll();
+                while(TrapObs.tempDataQueue.size() > 10000)
                     Thread.sleep(10000);
-                TrapObs._mAlarmQueueFromSocket.add(structAlarm);
+                TrapObs.tempDataQueue.add(structAlarm);
             }
         }
         

@@ -204,30 +204,13 @@ public class Handler implements Runnable {
 			StructureAlarm alarm = new StructureAlarm();
 			try {
 				alarm = queue.take();
-				if (queue.size() % 100 == 0) System.out.println(type + " queue remaining: " + queue.size());
+				if (queue.size() % 100 == 0) {
+					System.out.println(type + " queue remaining: " + queue.size());
+				}
 				alarm = AlarmInfo.setAlarmInfo(alarm);
 
-				// test insert alarm
-				// if (!alarm.recordType.equals("END")) {
-					// startTime = System.currentTimeMillis();
-					// insertAlarm(alarm);
-					// execOneStmt += (System.currentTimeMillis() - startTime);
-					// if (++count >= 50) {
-					// 	System.out.println(
-					// 			"INSERTING ==> " + type + ": " + count + " ALARMS" +
-					// 					" / TOTAL => " + (totalInsertCount += count) +
-					// 					"\nREMAINED IN QUEUE => " + queue.size() + "\n");
-					// 	count = 0;
-					// 	execOneStmt = 0;
-					// }
-				// }
-
-				if (alarm.recordType.equals("END")
-						&& !alarm.nbiSpecificProblem.startsWith("8502")
-						&& !alarm.nbiSpecificProblem.startsWith("9047")) {
-					// System.out.println("Phát hiện bản ghi END: " + alarm);
+				if (alarm.recordType.equals("END") && !alarm.nbiSpecificProblem.startsWith("8502") && !alarm.nbiSpecificProblem.startsWith("9047")) {
 					updateAlarmEnd(alarm);
-
 					// Log statistics every 50 updates
 					// if (totalUpdateSuccess % 50 == 0 && totalUpdateSuccess > 0) {
 					// 	System.out.println(
@@ -235,6 +218,7 @@ public class Handler implements Runnable {
 					// 					" / FAILED => " + totalUpdateFailure +
 					// 					"\nREMAINED IN QUEUE => " + queue.size() + "\n");
 					// }
+
 				} else {
 					insertAlarm(alarm);
 					if (++count >= 50) {

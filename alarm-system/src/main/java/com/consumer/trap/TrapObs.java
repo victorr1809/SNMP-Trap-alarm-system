@@ -13,23 +13,24 @@ import com.consumer.kafkaConsumer.ConsumerService;
 import com.consumer.kafkaConsumer.KafkaConsumerConfig;
 import com.consumer.kafkaConsumer.KafkaConsumerSetting;
 import com.consumer.model.StructureAlarm;
-import com.producer.util.DbUtil;
+import com.consumer.util.DbUtil;
+
 import com.producer.app.AppConfig;
 
 public class TrapObs {
-    public static LinkedBlockingQueue<StructureAlarm> _mAlarmQueueFromSocket = null;
+    public static LinkedBlockingQueue<StructureAlarm> tempDataQueue = null;
     private static Boolean _getDataFromKafka = true;
     static ProcessAlarm mProcessAlarm = null;
 
     // Hàm khởi tạo
     public TrapObs() throws FileNotFoundException, IOException {
-        _mAlarmQueueFromSocket = new LinkedBlockingQueue<>();
-        mProcessAlarm = new ProcessAlarm(_mAlarmQueueFromSocket);
+        tempDataQueue = new LinkedBlockingQueue<>();
+        mProcessAlarm = new ProcessAlarm(tempDataQueue);
     }
 
 
     public static void main(String[] args) throws FileNotFoundException, IOException, InterruptedException {
-        AppConfig.loadOIDMap();
+        // AppConfig.loadOIDMap();
         DbUtil.initLoad();
         KafkaConsumerConfig.loadKafkaConsumerConfig();
         TrapObs obs = new TrapObs();
@@ -47,31 +48,13 @@ public class TrapObs {
 		try {
 			if(_getDataFromKafka) {
 				Thread _ps = new ConsumerService();
-                // Lấy msg từ Kafka và đẩy vào _mAlarmDataQueue
-				_ps.start();
+				_ps.start();                // [ConsumerService] Lấy msg từ Kafka và đẩy vào tempDataQueue
+				mProcessAlarm.start();      // [ProcessAlarm] Lấy msg từ tempDataQueue và đẩy vào 3 hàng đợi khác nhau
 
-                // Lấy msg từ _mAlarmDataQueue và đẩy vào 3 hàng đợi khác nhau
-				mProcessAlarm.start();
 				new Thread(mProcessAlarm._3GThread).start();
 				new Thread(mProcessAlarm._4GThread).start();
 				new Thread(mProcessAlarm._coreThread).start();
 			}
-            // long lastReloadTime = System.currentTimeMillis(); 
-	        // long reloadInterval = TimeUnit.HOURS.toMillis(3);
-
-            // while(true) {
-            //     try {
-            //         if(!ConsumerService.isConsumerConnected()) {
-            //             System.out.println("Cố gắng kết nối tới Kafka...");
-            //             TimeUnit.SECONDS.sleep(0xa);
-            //         } else {
-            //             TimeUnit.SECONDS.sleep(0xa * 0x6);
-            //         }
-            //     } catch (Exception e) {
-            //         System.out.println("Lỗi: " + e);
-            //         System.exit(1);
-            //     }
-            // }
 
 		} catch (Exception e) {
 			System.out.println("OBS gặp lỗi: " + e);
