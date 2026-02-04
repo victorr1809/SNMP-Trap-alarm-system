@@ -56,7 +56,9 @@ alarm-system/
 
 ## Các tính năng nổi bật (Key features)
 **1. Khả năng chịu tải và xử lý song song:** Sử dụng hàng đợi nội bộ, đặt ở những điểm dễ bị nghẽn (giữa TrapReceiver và Kafka, giữa Consumer và PostgreSQL) giúp hệ thống chịu tải tốt hơn
+
 **2. Batch Processing:** Vì Update là thao tác chạy tốn thời gian hơn Insert nên Update sẽ được gom tới khi đủ 100 câu mới thực thi --> tối ưu hơn.
+
 **3. Gửi cảnh báo:** Thiết lập các luật cảnh báo cho 1 vài mã lỗi nghiêm trọng (cáp quang, nguồn điện, mất kết nối,...) khi thoả mãn điều kiện sẽ gửi cảnh báo tới user.
 
 ## Cài đặt và triển khai
