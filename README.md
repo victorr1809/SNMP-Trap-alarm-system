@@ -40,7 +40,8 @@ alarm-system/
   
 ### 2. Xử lý và lưu trữ
 - Consumer đọc dữ liệu từ Kafka -> phân loại bản tin theo network (3G, 4G, Core) -> đẩy vào 3 hàng đợi riêng biệt
-- Các luồng xử lý song song lấy dữ liệu và lưu trữ vào PostgreSQL theo logic sau:
+- 3 luồng song song lấy dữ liệu từ 3 hàng đợi và gọi procedure để lưu vào PostgreSQL theo logic sau:
+<img width="1052" height="304" alt="Screenshot 2026-02-04 at 18 43 32" src="https://github.com/user-attachments/assets/2c5b5b95-e026-4f3c-8503-ad7afb3cdd95" />
 
 ### 3. Trực quan hoá và gửi cảnh báo:
 - Sử dụng Grafana để vẽ dashboard
