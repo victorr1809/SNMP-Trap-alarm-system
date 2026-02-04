@@ -3,7 +3,6 @@ com/producer/trap/TrapProbe.class
 com/producer/model/CellN3G.class
 com/producer/model/CellN4G.class
 com/producer/util/DbUtilTest.class
-com/producer/alarm/AlarmInfo.class
 com/producer/kafkaProducer/ProducerService.class
 com/consumer/util/Handler.class
 com/producer/kafkaProducer/TestProducer.class
@@ -11,7 +10,6 @@ com/consumer/test/TestKafkaConsumer.class
 com/producer/kafkaProducer/ProducerCreator.class
 com/consumer/test/TestConsumerCreator.class
 com/consumer/kafkaConsumer/KafkaConsumerSetting.class
-com/producer/alarm/AlarmType.class
 com/producer/trap/TrapSender.class
 com/consumer/kafkaConsumer/ConsumerCreator.class
 com/producer/trap/TrapReceiver.class

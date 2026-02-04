@@ -3,11 +3,10 @@ package com.consumer.trap;
 // import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-
 import org.apache.log4j.Logger;
 
 import com.consumer.util.Handler;
-import com.producer.model.StructureAlarm;
+import com.consumer.model.StructureAlarm;
 
 public class ProcessAlarm extends Thread {
     private final Logger logger = Logger.getLogger(ProcessAlarm.class.getName()); 

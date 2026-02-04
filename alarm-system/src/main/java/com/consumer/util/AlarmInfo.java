@@ -1,13 +1,11 @@
 // StructureAlarm
 package com.consumer.util;
 
-import com.producer.alarm.AlarmType;
-import com.producer.model.CellN3G;
-import com.producer.model.CellN4G;
-import com.producer.model.HCoreN;
-import com.producer.model.HProvinceCode;
-import com.producer.model.StructureAlarm;
-import com.producer.util.DbUtil;
+import com.consumer.model.CellN3G;
+import com.consumer.model.CellN4G;
+import com.consumer.model.HCoreN;
+import com.consumer.model.HProvinceCode;
+import com.consumer.model.StructureAlarm;
 
 
 public class AlarmInfo {
@@ -79,30 +77,23 @@ public class AlarmInfo {
 	// Hàm điền nbiAlarmType, site, ne, neType, thông tin địa lý
 	public static StructureAlarm setAlarmInfo(StructureAlarm structAlarm) {
 		AlarmInfo.getBSCId(structAlarm);
-		// mapping nbiAlarmType
-		if(structAlarm.ipAddress.equals("10.53.141.13") && structAlarm.nbiSpecificProblem.contains("NE3SWS AGENT NOT RESPONDING TO REQUESTS")) {
-			structAlarm.nbiAlarmType = "TRANSMISSION";
-		} else {
-			AlarmType alarmConfig = AlarmInfo.getAlarmConfig(structAlarm.network, structAlarm.nbiAdditionalText , structAlarm.nbiSpecificProblem); 
-			if (alarmConfig != null) { 
-				structAlarm.nbiAlarmType = alarmConfig.getAlarmType();
-			}
-		} 
+		// mapping nbiAlarmType...
 
-		// site
+		// Điền site
 		try {
 			// Thay đổi site name nếu cảnh báo là MAT DIEN CRAN
-			if (structAlarm.nbiAlarmType.equals("POWER")) {
-				// site name theo alarm info
-				if(structAlarm.nbiAdditionalText.contains("<") && structAlarm.nbiAdditionalText.contains(">")) {
-					structAlarm.site = structAlarm.nbiAdditionalText.substring(structAlarm.nbiAdditionalText.lastIndexOf("<") + 1, structAlarm.nbiAdditionalText.lastIndexOf(">"));
-				}
-				// site name theo alarm name
-				if(structAlarm.nbiSpecificProblem.contains("<") && structAlarm.nbiSpecificProblem.contains(">")) {
-					structAlarm.site = structAlarm.nbiSpecificProblem.substring(structAlarm.nbiSpecificProblem.lastIndexOf("<") + 1, structAlarm.nbiSpecificProblem.lastIndexOf(">"));
-				}
-			}
-			// Thay đổi tên trạm nếu cảnh báo MFD
+			// if (structAlarm.nbiAlarmType.equals("POWER")) {
+			// 	// site name theo alarm info
+			// 	if(structAlarm.nbiAdditionalText.contains("<") && structAlarm.nbiAdditionalText.contains(">")) {
+			// 		structAlarm.site = structAlarm.nbiAdditionalText.substring(structAlarm.nbiAdditionalText.lastIndexOf("<") + 1, structAlarm.nbiAdditionalText.lastIndexOf(">"));
+			// 	}
+			// 	// site name theo alarm name
+			// 	if(structAlarm.nbiSpecificProblem.contains("<") && structAlarm.nbiSpecificProblem.contains(">")) {
+			// 		structAlarm.site = structAlarm.nbiSpecificProblem.substring(structAlarm.nbiSpecificProblem.lastIndexOf("<") + 1, structAlarm.nbiSpecificProblem.lastIndexOf(">"));
+			// 	}
+			// }
+
+			// Thay đổi tên trạm nếu cảnh báo máy phát điện (vì những cảnh báo này có chứa tên trạm chính xác ở trong dấu ngoặc nhọn)
 			if(structAlarm.nbiSpecificProblem.toUpperCase().contains("GENERATOR") || structAlarm.nbiAdditionalText.toUpperCase().contains("GENERATOR")) {
 				// Site name theo alarm info
 				if(structAlarm.nbiAdditionalText.contains("<") && structAlarm.nbiAdditionalText.contains(">")) {
@@ -115,17 +106,17 @@ public class AlarmInfo {
 			}
 		} catch (Exception e) {}
 
-		// set ne = site
+		// Set ne = site
 		if (structAlarm.network.equals("RAN_4G")) {
 			if (structAlarm.site != null && !structAlarm.site.equals("")) {
 				structAlarm.ne = structAlarm.site;
 			}
 		}
 
-		// set ne type
+		// Điền network type
 		structAlarm.neType = AlarmInfo.getNeType(structAlarm.ne, structAlarm.site, structAlarm.cellid, structAlarm.network);
 
-		// mapping thông tin quận huyện
+		// Mapping thông tin quận huyện
 		getProvince(structAlarm);
 
 		// Set region default
@@ -158,7 +149,7 @@ public class AlarmInfo {
 			}
 			else if (structAlarm.nbiObjectInstance.contains("WBTS")) {
 				CellN3G cellN3G = AlarmInfo.getCellN3G(2, arrAll[0] + "/" + arrAll[1] + "/" + arrAll[2]);
-				if (cellN3G != null) {
+				if (cellN3G != null ) {
 					structAlarm.ne = cellN3G.getRncname();
 					structAlarm.site = cellN3G.getWbtsname();
 				} else {
@@ -166,7 +157,6 @@ public class AlarmInfo {
 					structAlarm.site = arrAll[2];
 				}
 			}
-
 			else {
 				CellN3G cellN3G = DbUtil.RNCID.get(arrAll[0] + "/" + arrAll[1]);
 				if (cellN3G != null) {
@@ -190,7 +180,8 @@ public class AlarmInfo {
 					structAlarm.site = arrAll[1];
 					structAlarm.cellid = arrAll[3];
 				}
-			} else if (structAlarm.nbiObjectInstance.contains("LNBTS")) {
+			} 
+			else if (structAlarm.nbiObjectInstance.contains("LNBTS")) {
 				CellN4G cellN4G = DbUtil.NODE4GID.get(arrAll[1].substring(arrAll[1].indexOf("-")+1, arrAll[1].length()));
 				if (cellN4G != null) {
 					structAlarm.ne = cellN4G.getNodeName();
@@ -199,7 +190,8 @@ public class AlarmInfo {
 					structAlarm.ne = arrAll[1];
 					structAlarm.site = arrAll[1];
 				}
-			} else {
+			} 
+			else {
 				CellN4G cellN4G = DbUtil.NODE4GID.get(arrAll[1].substring(arrAll[1].indexOf("-")+1, arrAll[1].length()));
 				if (cellN4G != null) {
 					structAlarm.ne = cellN4G.getNodeName(); 
@@ -210,9 +202,7 @@ public class AlarmInfo {
 		}
 		// CORE PS
 		else {
-			if(structAlarm.nbiObjectInstance.contains(alarmSGSN)
-					|| structAlarm.nbiObjectInstance.contains(alarmSGSN2)
-						||structAlarm.nbiObjectInstance.contains(alarmGGSN2)) { 
+			if(structAlarm.nbiObjectInstance.contains(alarmSGSN) || structAlarm.nbiObjectInstance.contains(alarmSGSN2) ||structAlarm.nbiObjectInstance.contains(alarmGGSN2)) { 
 				
 				HCoreN hCoreN = getCoreN(arrAll[1].substring(arrAll[1].indexOf("-")+1, arrAll[1].length()));
 				
@@ -262,7 +252,7 @@ public class AlarmInfo {
 	}
 	
 	public static CellN3G getCellN3G(int type, String name) {
-		// objectname
+		// objectname (WCEL)
 		if (type == 1) {
 			for (CellN3G item: DbUtil.BTS_3G) {
 				if (item.getObjectname().equals(name)) {
@@ -270,7 +260,7 @@ public class AlarmInfo {
 				}
 			}
 		} 
-		// bts_objectname
+		// bts_objectname (WBTS)
 		else {
 			for (CellN3G item: DbUtil.BTS_3G) {
 				if (item.getBtsObjectname().equals(name)) {
@@ -287,8 +277,7 @@ public class AlarmInfo {
 					&& item.getCellId().equals(cellId)) {
 				return item;
 			}
-		}
-		
+		}	
 		return null;
 	} 
 
@@ -301,6 +290,7 @@ public class AlarmInfo {
 		return null;
 	}
 
+	// --- Điền các trường địa lý ---
 	public static void getProvince(StructureAlarm structAlarm) {
 		HProvinceCode hProvinceCode = null;
 		// 4G
@@ -325,8 +315,7 @@ public class AlarmInfo {
 						structAlarm.province = item.getProvince();
 						structAlarm.district = item.getDistrict();
 						structAlarm.dept = item.getDept();
-						structAlarm.team = item.getTeam();
-						
+						structAlarm.team = item.getTeam();		
 						break;
 					}
 				}
@@ -347,6 +336,7 @@ public class AlarmInfo {
 		} 
 	} 
 	
+	// --- Điền severity code ----
 	public static String getSecurity(String code) {
 		if (code.equals("1")) return "A1";
 		else if (code.equals("2")) return "A2";
@@ -354,7 +344,7 @@ public class AlarmInfo {
 		else return "A4";
 	}
 
-	// Lấy Ne Type
+	// --- Điền Network Type ---
 	public static String getNeType(String ne, String site, String cell, String network) {
 		String neType = "";
 		try {
@@ -362,49 +352,18 @@ public class AlarmInfo {
 				if (cell!=null && !cell.equals("")) neType = "CELL";
 				else {
 					if(site != null && !site.equals("")) neType = "BTS";
-					else neType = "RNC";
 				}
+			} else if (network.equals("3G")) {
+				neType = "RNC";
 			} else if (network.equals("RAN_4G")) {
 				if (cell!=null && !cell.equals("")) neType = "EUTRANCELL";
 				else neType = "ENODEB";
+			} else {
+				neType = "UNKNOWN";
 			}
 		} catch (Exception e) {}
 		return neType;
 	}
 	
-	public static AlarmType getAlarmConfig(String network, String alarmInfoValue, String alarmNameValue) {
-		System.out.println("==> GetAlarmType--"+network+"--"+alarmInfoValue+"--"+alarmNameValue);
-		try {
-			for (AlarmType item: DbUtil.ALARM_CONFIG) {
-				if(item.getSearch().equals("SINGLE")
-						&& (item.getBlockValue() != null || item.getAlarmInfoValue() != null)) 
-				{
-					if(item.getBlockValue() != null 
-							&& item.getNode().equals(network)
-							&& alarmNameValue.toUpperCase().contains(item.getBlockValue().toUpperCase())) {
-						return item;
-					}
-					
-					if(item.getAlarmInfoValue() != null 
-							&& item.getNode().equals(network)
-							&& alarmInfoValue.toUpperCase().contains(item.getAlarmInfoValue().toUpperCase())) {
-						return item;
-					}
-				}
-				
-				if(item.getSearch().equals("MULTI") && item.getBlockValue() != null && item.getAlarmInfoValue() != null) {
-					if(item.getNode().equals(network)
-							&& alarmNameValue.toUpperCase().contains(item.getBlockValue().toUpperCase())
-							&& alarmInfoValue.toUpperCase().contains(item.getAlarmInfoValue().toUpperCase())) {
-						return item;
-					}
-				} 
-			}
-		} catch (Exception e) {
-			System.err.println("Exception getAlarmConfig() : " + e);
-			return null;
-		}
-		
-		return null;
-	} 
+
 }

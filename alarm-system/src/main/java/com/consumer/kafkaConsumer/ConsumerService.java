@@ -30,7 +30,7 @@ import org.apache.kafka.common.errors.InvalidTopicException;
 import org.apache.kafka.common.errors.TimeoutException;
 
 import com.consumer.trap.TrapObs;
-import com.producer.model.StructureAlarm;
+import com.consumer.model.StructureAlarm;
 
 public class ConsumerService extends Thread{
     private static Consumer<Long, StructureAlarm> consumer = null;

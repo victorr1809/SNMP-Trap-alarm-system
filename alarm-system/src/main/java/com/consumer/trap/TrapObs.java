@@ -12,9 +12,9 @@ import org.apache.log4j.Logger;
 import com.consumer.kafkaConsumer.ConsumerService;
 import com.consumer.kafkaConsumer.KafkaConsumerConfig;
 import com.consumer.kafkaConsumer.KafkaConsumerSetting;
-import com.producer.app.AppConfig;
-import com.producer.model.StructureAlarm;
+import com.consumer.model.StructureAlarm;
 import com.producer.util.DbUtil;
+import com.producer.app.AppConfig;
 
 public class TrapObs {
     public static LinkedBlockingQueue<StructureAlarm> _mAlarmQueueFromSocket = null;

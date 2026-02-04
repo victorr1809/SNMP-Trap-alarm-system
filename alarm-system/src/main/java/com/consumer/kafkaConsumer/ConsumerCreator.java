@@ -4,8 +4,8 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.LongDeserializer;
-import org.apache.kafka.common.serialization.StringDeserializer;
-import java.util.Map;
+// import org.apache.kafka.common.serialization.StringDeserializer;
+// import java.util.Map;
 import java.util.Properties;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 

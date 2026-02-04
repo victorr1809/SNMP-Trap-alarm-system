@@ -9,7 +9,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import org.apache.log4j.Logger;
 
-import com.producer.model.StructureAlarm;
+import com.consumer.model.StructureAlarm;
 import com.producer.util.DbUtil;
 
 import java.util.concurrent.TimeUnit;

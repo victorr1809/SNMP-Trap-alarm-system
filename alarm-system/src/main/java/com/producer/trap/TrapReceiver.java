@@ -1,7 +1,5 @@
 package com.producer.trap;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -12,7 +10,6 @@ import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-import org.apache.log4j.Logger;
 import org.snmp4j.CommandResponder;
 import org.snmp4j.CommandResponderEvent;
 import org.snmp4j.MessageDispatcherImpl;
@@ -41,7 +38,7 @@ import org.snmp4j.transport.DefaultUdpTransportMapping;
 import org.snmp4j.util.MultiThreadedMessageDispatcher;
 import org.snmp4j.util.ThreadPool;
 
-import com.consumer.util.AlarmInfo;
+import com.producer.util.AlarmInfo;
 import com.producer.app.AppConfig;
 import com.producer.app.AppSetting;
 import com.producer.common.Global;

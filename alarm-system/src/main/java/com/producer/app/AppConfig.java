@@ -9,7 +9,6 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URLDecoder;
-import java.net.URL;
 import java.security.CodeSource;
 import java.util.Properties;
 
@@ -42,7 +41,7 @@ public class AppConfig {
 	// --- Load DB config ---
 	public static Properties loadDBConnectInfo(){
 		Properties prop = new Properties();
-		String connectInfo = "config" + DB_CONFIG;
+		String connectInfo = "config/" + DB_CONFIG;
 		File filePath = new File(connectInfo);
 		
 		try {		

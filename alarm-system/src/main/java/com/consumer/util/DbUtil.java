@@ -1,4 +1,4 @@
-package com.producer.util;
+package com.consumer.util;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,15 +9,15 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.Properties;
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 import org.apache.log4j.Logger;
 
 import com.producer.app.AppConfig;
-import com.producer.model.CellN3G;
-import com.producer.model.CellN4G;
-import com.producer.model.HCoreN;
-import com.producer.model.HProvinceCode;
+import com.consumer.model.CellN3G;
+import com.consumer.model.CellN4G;
+import com.consumer.model.HCoreN;
+import com.consumer.model.HProvinceCode;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 
 public class DbUtil {
     final static Logger logger = Logger.getLogger(DbUtil.class);
@@ -27,14 +27,12 @@ public class DbUtil {
     public static List<CellN3G> BTS_3G = new ArrayList<>();
     public static List<HCoreN> CORE_LIST = new ArrayList<>();
     public static List<CellN4G> CELL_4G = new ArrayList<>();
+    public static List<HProvinceCode> PROVINCE_BY_CODE = new ArrayList<>();
 
     public static ConcurrentMap<String, CellN3G> RNCID = new ConcurrentHashMap<>();
     public static ConcurrentMap<String, CellN4G> NODE4GID = new ConcurrentHashMap<>();
     public static ConcurrentMap<String, HProvinceCode> PROVINCE_BY_NE = new ConcurrentHashMap<>();
     public static ConcurrentMap<String, String> H_MAP_IP_NODE_CISCO = new ConcurrentHashMap<>();
-
-    // public static List<AlarmType> ALARM_CONFIG = new ArrayList<>();
-    public static List<HProvinceCode> PROVINCE_BY_CODE = new ArrayList<>();
 
     // Kết nối DB (chạy ngay khi gọi tới class DbUtil)
     static {
