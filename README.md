@@ -41,23 +41,21 @@ alarm-system/
 ### 2. Xử lý và lưu trữ
 - Consumer đọc dữ liệu từ Kafka -> phân loại bản tin theo network (3G, 4G, Core) -> đẩy vào 3 hàng đợi riêng biệt
 - 3 luồng song song lấy dữ liệu từ 3 hàng đợi và gọi procedure để lưu vào PostgreSQL theo logic sau:
+<img width="1043" height="234" alt="Screenshot 2026-02-04 at 19 51 35" src="https://github.com/user-attachments/assets/f0be0b2e-b247-498d-9a8b-4641c0ac8845" />
 <img width="1052" height="304" alt="Screenshot 2026-02-04 at 18 43 32" src="https://github.com/user-attachments/assets/2c5b5b95-e026-4f3c-8503-ad7afb3cdd95" />
 
 ### 3. Trực quan hoá và gửi cảnh báo:
 - Sử dụng Grafana để vẽ dashboard
 - Dùng Grafana Alerting thiết lập luật cảnh báo và gửi tới Discord khi thoả mãn điều kiện
 
-## Demo
 ### Dashboard giám sát (Grafana)
 <img width="2864" height="2028" alt="dash" src="https://github.com/user-attachments/assets/37472ef6-80ba-46b1-bfa6-b703952cd281" />
 
-## Các tính năng nổi bật (Key features)
-1. Khả năng chịu tải
-2. Lưu trữ theo batch:
-3. Xử lý song song ở mức cơ bản
-4. Gửi cảnh báo tới người dùng
+### Grafana Alert Rules
+<img width="1398" height="434" alt="Alert rules" src="https://github.com/user-attachments/assets/6819b68b-daef-43a7-8da0-4d52dd079e8c" />
 
 ## Cài đặt và triển khai
+
 ## Công nghệ sử dụng
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
 ![Kafka](https://img.shields.io/badge/Apache%20Kafka-000?style=for-the-badge&logo=apachekafka)
