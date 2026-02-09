@@ -66,7 +66,6 @@ alarm-system/
 - Gửi và nhận: Trap được gửi qua UDP Socket
 - Thời gian: 06/12/2025 - 07/12/2025
 
-## Công nghệ sử dụng
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
 ![Kafka](https://img.shields.io/badge/Apache%20Kafka-000?style=for-the-badge&logo=apachekafka)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
