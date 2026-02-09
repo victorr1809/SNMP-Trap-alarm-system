@@ -2,9 +2,9 @@
 > Hệ thống xử lý bản tin SNMP Trap phát sinh từ thiết bị mạng viễn thông, lưu trữ, trực quan hoá, gửi cảnh báo tới người dùng
 
 ## Giới thiệu dự án
-Trap là bản tin thiết bị mạng chủ động gửi tới máy manager khi có sự cố xảy ra, qua giao thức SNMP. Nhà mạng sử dụng dữ liệu này để xác định được thông tin của thiết bị đang gặp lỗi từ đó đưa ra phương hướng xử lý.
+Trap là bản tin được thiết bị mạng chủ động gửi tới máy manager khi có sự cố xảy ra, qua giao thức SNMP. Nhà mạng sử dụng dữ liệu này để xác định được thông tin của thiết bị đang gặp lỗi từ đó đưa ra phương hướng xử lý.
 
-Trap không phải dòng dữ liệu ổn định mà nó có yếu tố bùng phát (Trap storm) khi hệ thống gặp lỗi nghiêm trọng. Dự án này xây dựng một pipeline xử lý bất đồng bộ, sử dụng **Kafka** làm vùng đệm, **hàng đợi nội bộ để giảm tải** và cơ chế **Batch Processing** để đảm bảo khả năng chịu tải cao.
+Trap không phải dòng dữ liệu ổn định mà nó có yếu tố bùng phát (Trap storm) khi hệ thống gặp lỗi nghiêm trọng. Dự án này xây dựng một pipeline xử lý bất đồng bộ, sử dụng **Kafka** làm vùng đệm, các **hàng đợi nội bộ** để giảm tải và **batch processing** khi lưu trữ vào database.
 
 ## Cấu trúc dự án
 ```text
