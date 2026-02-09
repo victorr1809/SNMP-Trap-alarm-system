@@ -61,7 +61,10 @@ alarm-system/
 
 **3. Gửi cảnh báo:** Thiết lập các luật cảnh báo cho 1 vài mã lỗi nghiêm trọng (cáp quang, nguồn điện, mất kết nối,...) khi thoả mãn điều kiện sẽ gửi cảnh báo tới user.
 
-## Cài đặt và triển khai
+## Nguồn dữ liệu
+- Thông tin: Dữ liệu Trap phát sinh từ thiết bị mạng của nhà mạng Mobifone, đây là bộ dữ liệu test được sử dụng để kiểm thử hệ thống
+- Gửi và nhận: Trap được gửi qua UDP Socket
+- Thời gian: 06/12/2025 - 07/12/2025
 
 ## Công nghệ sử dụng
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
