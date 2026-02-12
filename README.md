@@ -69,7 +69,7 @@ alarm-system/
 
 ## Cài đặt và chạy thử
 ### 🛠️ Yêu cầu hệ thống
-Trước khi chạy, đảm bảo máy bạn đáp ứng những điều sau:
+Trước khi chạy, đảm bảo máy bạn đáp ứng những yêu cầu sau:
 * **Java:** Version 17 hoặc cao hơn
 * **Maven (Quản trị dự án):** Maven 3.8+.
 * **Message Broker:** Apache Kafka & Zookeeper.
@@ -84,22 +84,28 @@ docker-compose up -d
 ```text
 brew install maven      # For MacOS
 ```
-### Chuẩn bị
+### 💾 Chuẩn bị
 - Tạo topic alarm-snmp trên Kafka
 - Tạo bảng alarm.alarm_all trong PostgreSQL 
 - Tạo procedure insert_alarm_all và update_alarm_all trong PostgreSQL
-### Cách thức chạy
-Compile project bằng maven để tải các dependencies về máy:
+### 🚀 Cách thức chạy
+Mở 3 terminal khác nhau để chạy các thành phần của hệ thống
+> Compile project bằng maven để tải các dependencies về máy:
 ```text
 mvn clean compile
 ```
-Khởi động TrapReceiver lắng nghe TRAP gửi qua port 1234 UDP SOCKET và đẩy lên Kafka
-
-Khởi động TrapSender gửi Trap tới port 1234 (localhost) UDP SOCKET
-
-Khởi động TrapObs để poll dữ liệu từ Kafka và lưu DB
-
-
+> Khởi động TrapReceiver lắng nghe TRAP gửi qua port 1234 UDP SOCKET và đẩy lên Kafka
+```text
+mvn exec:java -Dexec.mainClass=com.producer.trap.TrapReceiver
+```   
+> Khởi động TrapSender gửi Trap tới port 1234 (localhost) UDP SOCKET
+```text
+mvn exec:java -Dexec.mainClass=com.producer.trap.TrapSender
+```
+> Khởi động TrapObs để poll dữ liệu từ Kafka và lưu DB
+```text
+mvn exec:java -Dexec.mainClass=com.consumer.trap.TrapObs
+```
 
 ## Nguồn dữ liệu
 - Thông tin: Dữ liệu Trap phát sinh từ thiết bị mạng của nhà mạng Mobifone, đây là bộ dữ liệu test được sử dụng để kiểm thử hệ thống
