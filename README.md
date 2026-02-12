@@ -40,10 +40,11 @@ alarm-system/
   
 ### 2. Xử lý và lưu trữ
 - Consumer đọc dữ liệu từ Kafka -> phân loại bản tin theo network (3G, 4G, Core) -> đẩy vào 3 hàng đợi riêng biệt
-- 3 luồng song song lấy dữ liệu từ 3 hàng đợi và gọi procedure để lưu vào PostgreSQL theo logic sau:
 <img width="1043" height="234" alt="Screenshot 2026-02-04 at 19 51 35" src="https://github.com/user-attachments/assets/f0be0b2e-b247-498d-9a8b-4641c0ac8845" />
+- 3 luồng song song lấy dữ liệu từ 3 hàng đợi và gọi procedure để lưu vào PostgreSQL theo logic sau:
 <img width="1052" height="304" alt="Screenshot 2026-02-04 at 18 43 32" src="https://github.com/user-attachments/assets/2c5b5b95-e026-4f3c-8503-ad7afb3cdd95" />
-
+- Lưu trữ vào bảng:
+<img width="828" height="556" alt="ERD" src="https://github.com/user-attachments/assets/94bae5f6-eb97-427d-bea0-e19de8221586" />
 ### 3. Trực quan hoá và gửi cảnh báo:
 - Sử dụng Grafana để vẽ dashboard
 - Dùng Grafana Alerting thiết lập luật cảnh báo và gửi tới Discord khi thoả mãn điều kiện
@@ -67,6 +68,7 @@ alarm-system/
 - Thời gian: 06/12/2025 - 07/12/2025
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)
 ![Kafka](https://img.shields.io/badge/Apache%20Kafka-000?style=for-the-badge&logo=apachekafka)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Grafana](https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white)
