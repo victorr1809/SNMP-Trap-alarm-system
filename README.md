@@ -40,14 +40,16 @@ alarm-system/
   
 ### 2. Xử lý và lưu trữ
 - Consumer đọc dữ liệu từ Kafka -> phân loại bản tin theo network (3G, 4G, Core) -> đẩy vào 3 hàng đợi riêng biệt
-<img width="1043" height="234" alt="Screenshot 2026-02-04 at 19 51 35" src="https://github.com/user-attachments/assets/f0be0b2e-b247-498d-9a8b-4641c0ac8845" />
 - 3 luồng song song lấy dữ liệu từ 3 hàng đợi và gọi procedure để lưu vào PostgreSQL theo logic sau:
+<img width="1043" height="234" alt="Screenshot 2026-02-04 at 19 51 35" src="https://github.com/user-attachments/assets/f0be0b2e-b247-498d-9a8b-4641c0ac8845" />
 <img width="1052" height="304" alt="Screenshot 2026-02-04 at 18 43 32" src="https://github.com/user-attachments/assets/2c5b5b95-e026-4f3c-8503-ad7afb3cdd95" />
-- Lưu trữ vào bảng:
-<img width="828" height="556" alt="ERD" src="https://github.com/user-attachments/assets/94bae5f6-eb97-427d-bea0-e19de8221586" />
+
 ### 3. Trực quan hoá và gửi cảnh báo:
 - Sử dụng Grafana để vẽ dashboard
 - Dùng Grafana Alerting thiết lập luật cảnh báo và gửi tới Discord khi thoả mãn điều kiện
+
+### ERD
+<img width="828" height="556" alt="ERD" src="https://github.com/user-attachments/assets/94bae5f6-eb97-427d-bea0-e19de8221586" />
 
 ### Dashboard giám sát (Grafana)
 <img width="2864" height="2028" alt="dash" src="https://github.com/user-attachments/assets/37472ef6-80ba-46b1-bfa6-b703952cd281" />
