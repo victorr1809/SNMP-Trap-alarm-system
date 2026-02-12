@@ -67,6 +67,40 @@ alarm-system/
 
 **3. Gửi cảnh báo:** Thiết lập các luật cảnh báo cho 1 vài mã lỗi nghiêm trọng (cáp quang, nguồn điện, mất kết nối,...) khi thoả mãn điều kiện sẽ gửi cảnh báo tới user.
 
+## Cài đặt và chạy thử
+### 🛠️ Yêu cầu hệ thống
+Trước khi chạy, đảm bảo máy bạn đáp ứng những điều sau:
+* **Java:** Version 17 hoặc cao hơn
+* **Maven (Quản trị dự án):** Maven 3.8+.
+* **Message Broker:** Apache Kafka & Zookeeper.
+* **Database:** PostgreSQL 14+.
+* **Visualization:** Grafana
+
+> **Cài đặt Kafka, Kafka UI, Zookeeper, Grafana:** cài trên **Docker**
+```text
+docker-compose up -d
+```
+> **Cài đặt Maven**
+```text
+brew install maven      # For MacOS
+```
+### Chuẩn bị
+- Tạo topic alarm-snmp trên Kafka
+- Tạo bảng alarm.alarm_all trong PostgreSQL 
+- Tạo procedure insert_alarm_all và update_alarm_all trong PostgreSQL
+### Cách thức chạy
+Compile project bằng maven để tải các dependencies về máy:
+```text
+mvn clean compile
+```
+Khởi động TrapReceiver lắng nghe TRAP gửi qua port 1234 UDP SOCKET và đẩy lên Kafka
+
+Khởi động TrapSender gửi Trap tới port 1234 (localhost) UDP SOCKET
+
+Khởi động TrapObs để poll dữ liệu từ Kafka và lưu DB
+
+
+
 ## Nguồn dữ liệu
 - Thông tin: Dữ liệu Trap phát sinh từ thiết bị mạng của nhà mạng Mobifone, đây là bộ dữ liệu test được sử dụng để kiểm thử hệ thống
 - Gửi và nhận: Trap được gửi qua UDP Socket
