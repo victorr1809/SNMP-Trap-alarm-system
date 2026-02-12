@@ -57,6 +57,9 @@ alarm-system/
 ### Grafana Alert Rules
 <img width="1398" height="434" alt="Alert rules" src="https://github.com/user-attachments/assets/6819b68b-daef-43a7-8da0-4d52dd079e8c" />
 
+### Cảnh báo được gửi tới Discord
+<img width="1201" height="628" alt="send_to_discord" src="https://github.com/user-attachments/assets/88bf9513-bb28-49f2-b2e9-aa68b5d38ddb" />
+
 ## Các tính năng nổi bật (Key features)
 **1. Khả năng chịu tải và xử lý song song:** Sử dụng hàng đợi nội bộ, đặt ở những điểm dễ bị nghẽn (giữa TrapReceiver và Kafka, giữa Consumer và PostgreSQL) giúp hệ thống chịu tải tốt hơn
 
