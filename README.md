@@ -1,12 +1,12 @@
-# SNMP Trap alarm system
+# SNMP Trap Alarm System 💻
 > Hệ thống xử lý bản tin SNMP Trap phát sinh từ thiết bị mạng viễn thông, lưu trữ, trực quan hoá, gửi cảnh báo tới người dùng
 
-## Overview
+## Overview 📖
 Trap là bản tin được thiết bị mạng chủ động gửi tới máy manager khi có sự cố xảy ra, qua giao thức SNMP. Nhà mạng sử dụng dữ liệu này để xác định được thông tin của thiết bị đang gặp lỗi từ đó đưa ra phương hướng xử lý.
 
 Trap không phải dòng dữ liệu ổn định mà nó có yếu tố bùng phát (Trap storm) khi hệ thống gặp lỗi nghiêm trọng. Dự án này xây dựng một pipeline xử lý bất đồng bộ, sử dụng **Kafka** làm vùng đệm, các **hàng đợi nội bộ** để giảm tải và **batch processing** khi lưu trữ vào database.
 
-## Project Structure
+## Project Structure 📂
 ```text
 alarm-system/
 │── pom.xml                   # Maven config
@@ -31,7 +31,7 @@ alarm-system/
 │── docker-compose.yml        # Docker compose file
 │── README.md
 ```
-## System Architecture
+## System Architecture 🏗️
 <img width="2400" height="1350" alt="system architecture" src="https://github.com/user-attachments/assets/a1f8584f-b6bf-45af-b39b-62394e1e383c" />
 
 ### 1. Thu thập Trap
