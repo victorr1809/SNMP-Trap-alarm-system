@@ -32,7 +32,7 @@ alarm-system/
 │── README.md
 ```
 ## System Architecture
-<img width="1198" height="390" alt="Screenshot 2026-01-31 at 22 51 34" src="https://github.com/user-attachments/assets/84b41cfc-9c94-49d4-8199-bf479618d730" />
+<img width="2400" height="1350" alt="system architecture" src="https://github.com/user-attachments/assets/a1f8584f-b6bf-45af-b39b-62394e1e383c" />
 
 ### 1. Thu thập Trap
 - Trap Receiver được viết bằng Java, lắng nghe Trap gửi về qua UDP socket
