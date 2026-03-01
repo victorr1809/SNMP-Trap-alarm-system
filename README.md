@@ -31,6 +31,13 @@ alarm-system/
 │── docker-compose.yml        # Docker compose file
 │── README.md
 ```
+
+## Data source
+- Trap data: dữ liệu Trap phát sinh từ thiết bị mạng của nhà mạng Mobifone, đây là bộ dữ liệu test được sử dụng để kiểm thử hệ thống
+- Mapping data: dữ liệu các trạm phát sóng của Mobifone để thực hiện mapping
+- Gửi và nhận: Trap được gửi qua UDP Socket
+- Thời gian: 06/12/2025 - 07/12/2025
+  
 ## System Architecture 🏗️
 <img width="2400" height="1350" alt="system architecture" src="https://github.com/user-attachments/assets/a1f8584f-b6bf-45af-b39b-62394e1e383c" />
 
@@ -106,12 +113,6 @@ mvn exec:java -Dexec.mainClass=com.producer.trap.TrapSender
 ```text
 mvn exec:java -Dexec.mainClass=com.consumer.trap.TrapObs
 ```
-
-## Data source
-- Trap data: dữ liệu Trap phát sinh từ thiết bị mạng của nhà mạng Mobifone, đây là bộ dữ liệu test được sử dụng để kiểm thử hệ thống
-- Mapping data: dữ liệu các trạm phát sóng của Mobifone để thực hiện mapping
-- Gửi và nhận: Trap được gửi qua UDP Socket
-- Thời gian: 06/12/2025 - 07/12/2025
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)
