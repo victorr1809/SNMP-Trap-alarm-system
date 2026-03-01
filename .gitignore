@@ -1,6 +1,6 @@
 # Compiled class file
 
-alarm-system/target/
+target/
 *.class
 
 # Log file
