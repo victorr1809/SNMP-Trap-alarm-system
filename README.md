@@ -1,12 +1,12 @@
 # SNMP Trap alarm system
 > Hệ thống xử lý bản tin SNMP Trap phát sinh từ thiết bị mạng viễn thông, lưu trữ, trực quan hoá, gửi cảnh báo tới người dùng
 
-## Giới thiệu dự án
+## Overview
 Trap là bản tin được thiết bị mạng chủ động gửi tới máy manager khi có sự cố xảy ra, qua giao thức SNMP. Nhà mạng sử dụng dữ liệu này để xác định được thông tin của thiết bị đang gặp lỗi từ đó đưa ra phương hướng xử lý.
 
 Trap không phải dòng dữ liệu ổn định mà nó có yếu tố bùng phát (Trap storm) khi hệ thống gặp lỗi nghiêm trọng. Dự án này xây dựng một pipeline xử lý bất đồng bộ, sử dụng **Kafka** làm vùng đệm, các **hàng đợi nội bộ** để giảm tải và **batch processing** khi lưu trữ vào database.
 
-## Cấu trúc dự án
+## Project Structure
 ```text
 alarm-system/
 │── pom.xml                   # Maven config
@@ -31,7 +31,7 @@ alarm-system/
 │── docker-compose.yml        # Docker compose file
 │── README.md
 ```
-## Kiến trúc hệ thống
+## System Architecture
 <img width="1198" height="390" alt="Screenshot 2026-01-31 at 22 51 34" src="https://github.com/user-attachments/assets/84b41cfc-9c94-49d4-8199-bf479618d730" />
 
 ### 1. Thu thập Trap
@@ -51,7 +51,7 @@ alarm-system/
 ### ERD
 <img width="828" height="556" alt="ERD" src="https://github.com/user-attachments/assets/94bae5f6-eb97-427d-bea0-e19de8221586" />
 
-### Dashboard giám sát (Grafana)
+### Dashboard (Grafana)
 <img width="2864" height="2028" alt="dash" src="https://github.com/user-attachments/assets/37472ef6-80ba-46b1-bfa6-b703952cd281" />
 
 ### Grafana Alert Rules
@@ -60,14 +60,14 @@ alarm-system/
 ### Cảnh báo được gửi tới Discord
 <img width="1201" height="628" alt="send_to_discord" src="https://github.com/user-attachments/assets/88bf9513-bb28-49f2-b2e9-aa68b5d38ddb" />
 
-## Các tính năng nổi bật (Key features)
+## Key features 🎯
 **1. Khả năng chịu tải và xử lý song song:** Sử dụng hàng đợi nội bộ, đặt ở những điểm dễ bị nghẽn (giữa TrapReceiver và Kafka, giữa Consumer và PostgreSQL) giúp hệ thống chịu tải tốt hơn
 
 **2. Batch Processing:** Vì Update là thao tác chạy tốn thời gian hơn Insert nên Update sẽ được gom tới khi đủ 100 câu mới thực thi --> tối ưu hơn.
 
 **3. Gửi cảnh báo:** Thiết lập các luật cảnh báo cho 1 vài mã lỗi nghiêm trọng (cáp quang, nguồn điện, mất kết nối,...) khi thoả mãn điều kiện sẽ gửi cảnh báo tới user.
 
-## Cài đặt và chạy thử
+## Setup 💻
 ### 🛠️ Yêu cầu hệ thống
 Trước khi chạy, đảm bảo máy bạn đáp ứng những yêu cầu sau:
 * **Java:** Version 17 hoặc cao hơn
@@ -107,8 +107,9 @@ mvn exec:java -Dexec.mainClass=com.producer.trap.TrapSender
 mvn exec:java -Dexec.mainClass=com.consumer.trap.TrapObs
 ```
 
-## Nguồn dữ liệu
-- Thông tin: Dữ liệu Trap phát sinh từ thiết bị mạng của nhà mạng Mobifone, đây là bộ dữ liệu test được sử dụng để kiểm thử hệ thống
+## Data source
+- Trap data: dữ liệu Trap phát sinh từ thiết bị mạng của nhà mạng Mobifone, đây là bộ dữ liệu test được sử dụng để kiểm thử hệ thống
+- Mapping data: dữ liệu các trạm phát sóng của Mobifone để thực hiện mapping
 - Gửi và nhận: Trap được gửi qua UDP Socket
 - Thời gian: 06/12/2025 - 07/12/2025
 
