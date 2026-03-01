@@ -32,10 +32,10 @@ alarm-system/
 │── README.md
 ```
 
-## Data source
+## Data source 💻
 - Trap data: dữ liệu Trap phát sinh từ thiết bị mạng của nhà mạng Mobifone, đây là bộ dữ liệu test được sử dụng để kiểm thử hệ thống
 - Mapping data: dữ liệu các trạm phát sóng của Mobifone để thực hiện mapping
-- Gửi và nhận: Trap được gửi qua UDP Socket
+- Gửi và nhận: Trong thực tế Trap được gửi qua UDP Socket, hệ thống cũng mô phỏng quá trình gửi và nhận qua giao thức này
 - Thời gian: 06/12/2025 - 07/12/2025
   
 ## System Architecture 🏗️
