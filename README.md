@@ -41,17 +41,17 @@ alarm-system/
 ## System Architecture 🏗️
 <img width="2400" height="1350" alt="system architecture" src="https://github.com/user-attachments/assets/a1f8584f-b6bf-45af-b39b-62394e1e383c" />
 
-### 1. Thu thập Trap
+### 1. Data collection
 - Trap Receiver được viết bằng Java, lắng nghe Trap gửi về qua UDP socket
 - Dữ liệu Trap được parse, làm giàu dữ liệu rồi gửi lên Kafka
   
-### 2. Xử lý và lưu trữ
+### 2. Data processing and Data storage
 - Consumer đọc dữ liệu từ Kafka -> phân loại bản tin theo network (3G, 4G, Core) -> đẩy vào 3 hàng đợi riêng biệt
 - 3 luồng song song lấy dữ liệu từ 3 hàng đợi và gọi procedure để lưu vào PostgreSQL theo logic sau:
 <img width="1043" height="234" alt="Screenshot 2026-02-04 at 19 51 35" src="https://github.com/user-attachments/assets/f0be0b2e-b247-498d-9a8b-4641c0ac8845" />
 <img width="1052" height="304" alt="Screenshot 2026-02-04 at 18 43 32" src="https://github.com/user-attachments/assets/2c5b5b95-e026-4f3c-8503-ad7afb3cdd95" />
 
-### 3. Trực quan hoá và gửi cảnh báo:
+### 3. Data Visulization and Alerting
 - Sử dụng Grafana để vẽ dashboard
 - Dùng Grafana Alerting thiết lập luật cảnh báo và gửi tới Discord khi thoả mãn điều kiện
 
