@@ -2,9 +2,9 @@
 > Hệ thống xử lý bản tin SNMP Trap phát sinh từ thiết bị mạng viễn thông, lưu trữ, trực quan hoá, gửi cảnh báo tới người dùng
 
 ## Overview 📖
-Trap là bản tin được thiết bị mạng chủ động gửi tới máy manager khi có sự cố xảy ra, qua giao thức SNMP. Nhà mạng sử dụng dữ liệu này để xác định được thông tin của thiết bị đang gặp lỗi từ đó đưa ra phương hướng xử lý.
+Trap là bản tin được thiết bị mạng chủ động gửi tới máy manager khi có sự cố xảy ra, qua giao thức ```SNMP```. Nhà mạng sử dụng dữ liệu này để xác định được thông tin của thiết bị đang gặp lỗi từ đó đưa ra phương hướng xử lý.
 
-Trap không ổn định mà nó có yếu tố bùng phát (Trap storm) khi hệ thống gặp lỗi nghiêm trọng. Dự án này xây dựng một pipeline xử lý bất đồng bộ, sử dụng **Kafka** làm vùng đệm, các **hàng đợi nội bộ** để giảm tải và **batch processing** khi lưu trữ vào database.
+Trap không ổn định mà nó có yếu tố bùng phát **(Trap storm)** khi hệ thống gặp lỗi nghiêm trọng. Dự án này xây dựng một pipeline xử lý bất đồng bộ, sử dụng **Kafka** làm vùng đệm, các **hàng đợi nội bộ** để giảm tải và **batch processing** khi lưu trữ vào database.
 
 ## Project Structure 📂
 ```text
@@ -41,30 +41,38 @@ alarm-system/
 ## System Architecture 🏗️
 <img width="2400" height="1350" alt="system architecture" src="https://github.com/user-attachments/assets/a1f8584f-b6bf-45af-b39b-62394e1e383c" />
 
-### 1. Data collection
+
+### 1. Data collection and Data Processing 📊
 - Trap Receiver được viết bằng Java, lắng nghe Trap gửi về qua UDP socket
 - Dữ liệu Trap được parse, làm giàu dữ liệu rồi gửi lên Kafka
   
-### 2. Data processing and Data storage
-- Consumer đọc dữ liệu từ Kafka -> phân loại bản tin theo network (3G, 4G, Core) -> đẩy vào 3 hàng đợi riêng biệt
-- 3 luồng song song lấy dữ liệu từ 3 hàng đợi và gọi procedure để lưu vào PostgreSQL theo logic sau:
-<img width="1043" height="234" alt="Screenshot 2026-02-04 at 19 51 35" src="https://github.com/user-attachments/assets/f0be0b2e-b247-498d-9a8b-4641c0ac8845" />
-<img width="1052" height="304" alt="Screenshot 2026-02-04 at 18 43 32" src="https://github.com/user-attachments/assets/2c5b5b95-e026-4f3c-8503-ad7afb3cdd95" />
+### 2. Data Storage 💻
+- Consumer đọc data từ Kafka sau đó phân loại bản tin theo network (3G, 4G, Core) và đẩy vào 3 hàng đợi riêng biệt
+- Khởi tạo 3 luồng xử lý song song lấy data từ 3 hàng đợi và gọi procedure để lưu vào DB
 
-### 3. Data Visulization and Alerting
+### 3. Data Visulization and Alerting 🎥
 - Sử dụng Grafana để vẽ dashboard
 - Dùng Grafana Alerting thiết lập luật cảnh báo và gửi tới Discord khi thoả mãn điều kiện
 
-### ERD
+## Data Storage Flow 🌊
+<img width="1043" height="234" alt="Screenshot 2026-02-04 at 19 51 35" src="https://github.com/user-attachments/assets/f0be0b2e-b247-498d-9a8b-4641c0ac8845" />
+<img width="1052" height="304" alt="Screenshot 2026-02-04 at 18 43 32" src="https://github.com/user-attachments/assets/2c5b5b95-e026-4f3c-8503-ad7afb3cdd95" />
+
+## Entity Relation Diagram 
 ![erd](images/ERD.png)
 
-### Dashboard (Grafana)
-<img width="2864" height="2028" alt="dash" src="https://github.com/user-attachments/assets/37472ef6-80ba-46b1-bfa6-b703952cd281" />
+## Dashboard (Grafana) ✅
+![Dashboard](images/dashboard.png)
 
-### Grafana Alert Rules
+## Grafana Alerting 🚨
+* Thiết lập 5 luật cảnh báo (Alert rules) tương ứng với 5 mã lỗi của thiết bị mạng Nokia.
+* Đây là 5 mã lỗi ảnh hưởng đến cáp quang, đường truyền, nguồn điện, dẫn tới gián đoạn trải nghiệm người dùng ngay lập tức, vì thế cần gửi cảnh báo để nhà mạng phân công người tới xử lý.
+* Các điều kiện cảnh báo được thiết lập để mã lỗi tồn tại quá 5 phút mới gửi cảnh báo tới Discord để chống spam
+
 <img width="1398" height="434" alt="Alert rules" src="https://github.com/user-attachments/assets/6819b68b-daef-43a7-8da0-4d52dd079e8c" />
 
-### Cảnh báo được gửi tới Discord
+* Khi thoả mãn một trong các điều kiện cảnh báo, Grafana sẽ gửi cảnh báo tới người dùng thông qua kênh Discord với nội dung như sau:
+
 <img width="1201" height="628" alt="send_to_discord" src="https://github.com/user-attachments/assets/88bf9513-bb28-49f2-b2e9-aa68b5d38ddb" />
 
 ## Key features 🎯
