@@ -42,15 +42,15 @@ alarm-system/
 ![architecture](docs/system_architecture.png)
 
 
-### 1. Data collection and Data Processing 📊
+### 1. Data collection and Data Processing 
 - Trap Receiver được viết bằng Java, lắng nghe Trap gửi về qua UDP socket
 - Dữ liệu Trap được parse, làm giàu dữ liệu rồi gửi lên Kafka
   
-### 2. Data Storage 💻
+### 2. Data Storage 
 - Consumer đọc data từ Kafka sau đó phân loại bản tin theo network (3G, 4G, Core) và đẩy vào 3 hàng đợi riêng biệt
 - Khởi tạo 3 luồng xử lý song song lấy data từ 3 hàng đợi và gọi procedure để lưu vào DB
 
-### 3. Data Visulization and Alerting 🎥
+### 3. Data Visulization and Alerting 
 - Sử dụng Grafana để vẽ dashboard
 - Dùng Grafana Alerting thiết lập luật cảnh báo và gửi tới Discord khi thoả mãn điều kiện
 
@@ -58,7 +58,7 @@ alarm-system/
 <img width="1043" height="234" alt="Screenshot 2026-02-04 at 19 51 35" src="https://github.com/user-attachments/assets/f0be0b2e-b247-498d-9a8b-4641c0ac8845" />
 <img width="1052" height="304" alt="Screenshot 2026-02-04 at 18 43 32" src="https://github.com/user-attachments/assets/2c5b5b95-e026-4f3c-8503-ad7afb3cdd95" />
 
-## Entity Relation Diagram 
+## Entity Relationship Diagram 📊
 ![erd](docs/erd.png)
 
 ## Dashboard (Grafana) ✅
