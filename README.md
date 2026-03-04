@@ -39,7 +39,7 @@ alarm-system/
 - Thời gian: 06/12/2025 - 07/12/2025
   
 ## System Architecture 🏗️
-<img width="2400" height="1350" alt="system architecture" src="https://github.com/user-attachments/assets/a1f8584f-b6bf-45af-b39b-62394e1e383c" />
+![architecture](docs/system_architecture.png)
 
 
 ### 1. Data collection and Data Processing 📊
@@ -59,10 +59,10 @@ alarm-system/
 <img width="1052" height="304" alt="Screenshot 2026-02-04 at 18 43 32" src="https://github.com/user-attachments/assets/2c5b5b95-e026-4f3c-8503-ad7afb3cdd95" />
 
 ## Entity Relation Diagram 
-![erd](images/ERD.png)
+![erd](docs/erd.png)
 
 ## Dashboard (Grafana) ✅
-![Dashboard](images/dashboard.png)
+![Dashboard](docs/dashboard.png)
 
 ## Grafana Alerting 🚨
 * Thiết lập 5 luật cảnh báo (Alert rules) tương ứng với 5 mã lỗi của thiết bị mạng Nokia.
