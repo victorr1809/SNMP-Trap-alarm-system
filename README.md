@@ -56,7 +56,7 @@ alarm-system/
 - Dùng Grafana Alerting thiết lập luật cảnh báo và gửi tới Discord khi thoả mãn điều kiện
 
 ### ERD
-![erd](images/erd.png)
+![erd](images/ERD.png)
 
 ### Dashboard (Grafana)
 <img width="2864" height="2028" alt="dash" src="https://github.com/user-attachments/assets/37472ef6-80ba-46b1-bfa6-b703952cd281" />
