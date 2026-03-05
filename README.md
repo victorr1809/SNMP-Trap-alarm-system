@@ -60,12 +60,13 @@ alarm-system/
 ## Entity Relationship Diagram 📊
 ![erd](docs/erd_table.png)
 
+Thông tin bảng xem tại: [data_catalog.md](docs/data_catalog.md)
 ## Dashboard (Grafana) ✅
 ![Dashboard](docs/dashboard.png)
 
 ## Grafana Alerting 🚨
 * Thiết lập 5 luật cảnh báo (Alert rules) tương ứng với 5 mã lỗi của thiết bị mạng Nokia.
-* Đây là 5 mã lỗi ảnh hưởng đến cáp quang, đường truyền, nguồn điện, dẫn tới gián đoạn trải nghiệm người dùng ngay lập tức, vì thế cần gửi cảnh báo để nhà mạng phân công người tới xử lý. Xem định nghĩa 5 mã lỗi tại đây [error_code](docs/error_code.md)
+* Đây là 5 mã lỗi ảnh hưởng đến cáp quang, đường truyền, nguồn điện, dẫn tới gián đoạn trải nghiệm người dùng ngay lập tức, vì thế cần gửi cảnh báo để nhà mạng phân công người tới xử lý. Xem định nghĩa 5 mã lỗi tại đây [error_code.md](docs/error_code.md)
 * Các điều kiện cảnh báo được thiết lập để mã lỗi tồn tại quá 5 phút mới gửi cảnh báo tới Discord để chống spam
 
 <img width="1398" height="434" alt="Alert rules" src="https://github.com/user-attachments/assets/6819b68b-daef-43a7-8da0-4d52dd079e8c" />
