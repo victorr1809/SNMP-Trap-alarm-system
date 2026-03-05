@@ -55,8 +55,7 @@ alarm-system/
 - Dùng Grafana Alerting thiết lập luật cảnh báo và gửi tới Discord khi thoả mãn điều kiện
 
 ## Data Storage Flow 🌊
-<img width="1043" height="234" alt="Screenshot 2026-02-04 at 19 51 35" src="https://github.com/user-attachments/assets/f0be0b2e-b247-498d-9a8b-4641c0ac8845" />
-<img width="1052" height="304" alt="Screenshot 2026-02-04 at 18 43 32" src="https://github.com/user-attachments/assets/2c5b5b95-e026-4f3c-8503-ad7afb3cdd95" />
+![storage_flow](docs/storage_flow.png)
 
 ## Entity Relationship Diagram 📊
 ![erd](docs/erd.png)
