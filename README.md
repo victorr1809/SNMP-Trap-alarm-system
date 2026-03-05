@@ -58,7 +58,7 @@ alarm-system/
 ![storage_flow](docs/storage_flow.png)
 
 ## Entity Relationship Diagram 📊
-![erd](docs/erd.png)
+![erd](docs/erd_table.png)
 
 ## Dashboard (Grafana) ✅
 ![Dashboard](docs/dashboard.png)
